@@ -10,10 +10,8 @@ module.exports = (grunt) ->
                 src    : [ '**/*.coffee' ]
                 dest   : 'lib'
                 ext    : '.js'
-        clean  : [ 'lib/' ]
 
     grunt.loadNpmTasks 'grunt-contrib-coffee'
-    grunt.loadNpmTasks 'grunt-contrib-clean'
 
     grunt.registerTask 'build', [ 'coffee' ]
     grunt.registerTask 'default', [ 'build' ]
