@@ -1,0 +1,27 @@
+<form>
+	<div class='row'>
+		<div class='span8'>
+			<textarea placeholder='Paste your data here.' rows='20' required>{{textareaData}}</textarea>
+		</div>
+		<div class='span4'>
+			<ol>
+				<li>
+					Paste the data you want to check.<br>
+					<small>
+						Try some sample data:
+						<ul>
+							<li>
+								<a ng-click="sampleData('soviet.txt')">Soviet brochure, 1928</a>
+							</li>
+							<li>
+								<a ng-click='sampleData()'>Population by country</a>
+							</li>
+						</ul>
+					</small>
+				</li>
+				<li>Click 'Check data'!</li>
+			</ol>
+			<button class='btn btn-primary btn-large'>Check data</button>
+		</div>
+	</div>
+</form>

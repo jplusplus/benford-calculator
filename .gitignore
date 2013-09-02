@@ -1,3 +1,4 @@
 node_modules
-lib/*.js
-lib/**/*.js
+app/*.js
+app/routes/*.js
+app/static/scripts/*.js
