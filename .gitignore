@@ -2,3 +2,4 @@ node_modules
 app/*.js
 app/routes/*.js
 app/static/scripts/*.js
+app/static/stylesheets/*.css
