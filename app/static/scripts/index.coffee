@@ -12,5 +12,10 @@ class IndexCtl
             (@http.get "/samples/#{sampleName}").success (data) =>
                 @scope.textareaData = data
 
-#Export controller outside the closure
-(angular.module 'benford').controller 'indexCtl', IndexCtl
+(angular.module 'benford', []).
+    config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) =>
+        $locationProvider.html5Mode yes
+        $routeProvider.when('/',
+                            {templateUrl : 'partials/index.html', controller : IndexCtl})
+                      .otherwise({redirectTo : '/'})
+    ]
