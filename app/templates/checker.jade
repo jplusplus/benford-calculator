@@ -3,13 +3,13 @@ extends ./layouts/base
 block scripts
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
-    script(type='text/javascript').
-        var locals = !{JSON.stringify(locals)}
     !=js('/scripts/checker.js')
     :coffeescript
         $ () =>
-            ($ '#chart').highcharts window.lawOptions
-            ($ '#magnitudes').highcharts window.magnitudesOptions
+            locals = JSON.parse('!{JSON.stringify(locals)}')
+            ($ '#chart').highcharts Checker.getLawChartOptions locals.percents,
+                                                               locals.law
+            ($ '#magnitudes').highcharts Checker.getMagnitudeChartOptions locals.magnitudes
 
 block content
     div.row(ng-controller='Checker')
