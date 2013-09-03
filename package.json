@@ -1,3 +1,8 @@
 {
-	
+  "dependencies": {
+    "connect-assets": "~2.5.2",
+    "jade": "~0.35.0",
+    "express": "~3.3.8",
+    "less-middleware": "~0.1.12"
+  }
 }
