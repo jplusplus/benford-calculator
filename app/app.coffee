@@ -17,7 +17,6 @@ app.use express.logger 'dev'
 app.use do express.bodyParser
 app.use do express.methodOverride
 app.use app.router
-app.use (require 'less-middleware') src: path.join __dirname, 'static'
 app.use express.static path.join __dirname, 'static'
 app.use (require 'connect-assets') src : path.join __dirname, 'static'
 
