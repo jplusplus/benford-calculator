@@ -6,15 +6,13 @@ class Checker
         #Scope properties
 
         #Scope methods
-        @scope.showChart = () =>
-            ($ '#chart').highcharts window.chartOptions
 
 #Define Highcharts options
 window.chartOptions =
     chart :
         backgroundColor : '#eee'
     title :
-        text : "Benford's law vs. your data"
+        text : ''
         style :
             color : '#000'
     colors: ['#e6501d', '#e6b371', '#cf7131', '#907761',
@@ -34,16 +32,40 @@ window.chartOptions =
     tooltip :
         formatter : () ->
             @y + '%'
-    series : [
-        {
-            type : "column"
-            name : 'Your data'
-            data : locals.percents
-        }
-        {
-            type : 'spline'
-            name : "Benford's distribution"
-            data : locals.law
-        }
-    ]
+    credits :
+        enabled : no
+    legend :
+        verticalAlign : 'top'
+        align : 'right'
+        floating : yes
+        y : 35
+
+window.lawOptions = angular.copy window.chartOptions
+window.lawOptions.title.text = "Benford's law vs. your data"
+window.lawOptions.series = [
+    {
+        type : "column"
+        name : 'Your data'
+        data : locals.percents
+    }
+    {
+        type : 'spline'
+        name : "Benford's distribution"
+        data : locals.law
+    }
+]
+
+window.magnitudesOptions = angular.copy window.chartOptions
+window.magnitudesOptions.title.text = "Orders of magnitude"
+window.magnitudesOptions.xAxis.labels.formatter = () ->
+    '10^' + @value
+window.magnitudesOptions.legend.enabled = no
+window.magnitudesOptions.series = [
+    {
+        type : "column"
+        data : locals.magnitudes
+    }
+]
+
+
 window.Checker = Checker

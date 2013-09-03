@@ -7,19 +7,39 @@ exports.checker = (req, res) =>
     numbers = req.body.data.match regex
 
     #Get the first digit for each
+    #Compute magnitudes in the same loop
     total = 0
     results = {}
+    magnitudes = {}
+    lastMagnitude = 5
     results[i] = 0 for i in [1..9]
-    for num in numbers
-        if String(num)[0] > 0
+    magnitudes[i] = 0 for i in [0..lastMagnitude]
+    for i of numbers
+        numbers[i] = parseInt (String numbers[i]).replace /[.,]/, ''
+        if String(numbers[i])[0] > 0
             ++total
-            ++results[String(num)[0]]
+            ++results[String(numbers[i])[0]]
+            pow = 0
+            tmp = numbers[i]
+            while tmp >= 10
+                tmp /= 10
+                ++pow
+            if pow >= lastMagnitude
+                magnitudes[j] = 0 for j in [lastMagnitude..pow]
+                lastMagnitude = pow
+            ++magnitudes[pow]
 
     #Compute %
     percents = []
     for key, value of results
         percents.push [parseInt(key),
                        (Math.round (value * 100 / total) * 10) / 10]
+
+    #Compute magnitudes %
+    magnitudePercents = []
+    for key, val of magnitudes
+        magnitudePercents.push [key,
+                         (Math.round (magnitudes[key] * 100 / total) * 10) / 10]
 
     #Finally, render the page
     locals =
@@ -37,4 +57,5 @@ exports.checker = (req, res) =>
             [8, 5.1]
             [9, 4.6]
         ]
+        magnitudes : magnitudePercents
     res.render 'checker', locals
