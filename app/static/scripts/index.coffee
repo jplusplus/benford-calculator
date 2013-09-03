@@ -12,10 +12,4 @@ class IndexCtl
             (@http.get "/samples/#{sampleName}").success (data) =>
                 @scope.textareaData = data
 
-(angular.module 'benford', []).
-    config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) =>
-        $locationProvider.html5Mode yes
-        $routeProvider.when('/',
-                            {templateUrl : 'partials/index.html', controller : IndexCtl})
-                      .otherwise({redirectTo : '/'})
-    ]
+window.IndexCtl = IndexCtl
