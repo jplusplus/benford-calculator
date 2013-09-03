@@ -8,7 +8,7 @@ routes = require './routes'
 app = do express
 
 #Setup applications variables
-app.set 'port', process.env.port || 3000
+app.set 'port', process.env.PORT || 3000
 app.set 'views', path.join __dirname, 'templates'
 app.set 'view engine', 'jade'
 
