@@ -4,23 +4,22 @@ block scripts
     !=js('/scripts/index.js')
 
 block content
-    div(ng-controller='IndexCtl')
+    div.row(ng-controller='IndexCtl')
         form(action='/checker', method='POST')
-            div.row
-                div.span8
-                    textarea(name='data', placeholder='Paste your data here.',
-                             rows='20', required) {{textareaData}}
+            div.span8
+                textarea(name='data', placeholder='Paste your data here.',
+                         rows='20', required) {{textareaData}}
 
-                div.span4
-                    ol
-                        li
-                            Paste the data you want to check.<br>
-                            small
-                                Try some sample data:
-                                ul#samples
-                                    li
-                                        a(ng-click="sampleData('soviet.txt')") Soviet brochure, 1928
-                                    li
-                                        a(ng-click="sampleData('population.txt')") Population by country
-                        li Click 'Check data'!
-                    button.btn.btn-primary.btn-large Check data
+            div.span4
+                ol
+                    li
+                        Paste the data you want to check.<br>
+                        small
+                            Try some sample data:
+                            ul#samples
+                                li
+                                    a(ng-click="sampleData('soviet.txt')") Soviet brochure, 1928
+                                li
+                                    a(ng-click="sampleData('population.txt')") Population by country
+                    li Click 'Check data'!
+                button.btn.btn-primary.btn-large Check data

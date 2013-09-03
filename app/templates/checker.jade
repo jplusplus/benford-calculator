@@ -12,11 +12,10 @@ block scripts
             ($ '#magnitudes').highcharts window.magnitudesOptions
 
 block content
-    div(ng-controller='Checker')
-        div.row
-            div.span8
-                div#chart
-            div.span4.text-center
-                p Number of observations: #{total}
-                div#magnitudes
-                a(href='/').btn.btn-primary.btn-large Try another dataset
+    div.row(ng-controller='Checker')
+        div.span8
+            div#chart
+        div.span4.text-center
+            p Number of observations: #{total}
+            div#magnitudes
+            a(href='/').btn.btn-primary.btn-large Try another dataset

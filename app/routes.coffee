@@ -10,10 +10,9 @@ exports.checker = (req, res) =>
     #Compute magnitudes in the same loop
     total = 0
     results = {}
-    magnitudes = {}
-    lastMagnitude = 5
+    magnitudes = {0 : 0}
+    lastMagnitude = 0
     results[i] = 0 for i in [1..9]
-    magnitudes[i] = 0 for i in [0..lastMagnitude]
     for i of numbers
         numbers[i] = parseInt (String numbers[i]).replace /[.,]/, ''
         if String(numbers[i])[0] > 0
@@ -24,7 +23,7 @@ exports.checker = (req, res) =>
             while tmp >= 10
                 tmp /= 10
                 ++pow
-            if pow >= lastMagnitude
+            if pow > lastMagnitude
                 magnitudes[j] = 0 for j in [lastMagnitude..pow]
                 lastMagnitude = pow
             ++magnitudes[pow]
