@@ -1,7 +1,8 @@
-<form>
+<form action='/checker' method='POST'>
 	<div class='row'>
 		<div class='span8'>
-			<textarea placeholder='Paste your data here.' rows='20' required>{{textareaData}}</textarea>
+			<textarea name='data' placeholder='Paste your data here.'
+			          rows='20' required>{{textareaData}}</textarea>
 		</div>
 		<div class='span4'>
 			<ol>
