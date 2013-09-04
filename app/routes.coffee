@@ -1,7 +1,9 @@
+fs = require 'fs'
+mongodb = require 'mongodb'
+
 title = 'Benford&#39;s law checker'
 
 #Connect to database
-mongodb = require 'mongodb'
 connectURL = 'mongodb://localhost:27017/benford'
 coll = null
 mongodb.MongoClient.connect connectURL, (err, db) =>
@@ -33,9 +35,18 @@ renderCheckedPage = (doc, req, res, share = yes) =>
     res.render 'checker', locals
 
 exports.checker = (req, res) =>
+    globalString = req.body.data
+
+    if req.files.file.name isnt '' || Array.isArray req.files.file
+        if not Array.isArray req.files.file
+            req.files.file = [req.files.file]
+        for file in req.files.file
+            globalString += "\n" + do (fs.readFileSync file.path).toString
+            fs.unlink file.path
+
     #Extract numbers from the text
     regex = /\d+([.,]?\d+)*/gm
-    numbers = req.body.data.match regex
+    numbers = globalString.match regex
 
     #Get the first digit for each
     #Compute magnitudes in the same loop

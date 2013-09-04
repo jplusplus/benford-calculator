@@ -5,14 +5,14 @@ block scripts
 
 block content
     div.row(ng-controller='IndexCtl')
-        form(action='/checker', method='POST')
+        form(action='/checker', method='POST', enctype='multipart/form-data')
             div.span9
                 textarea(name='data', placeholder='Paste your data here.',
-                         rows='20', required) {{textareaData}}
-
+                         rows='20') {{textareaData}}
+                input(type='file', accept='text/*', name='file', multiple)
             div.span3
                 ol
-                    li Paste the data you want to check.<br>
+                    li Paste the data you want to check or select a file.<br>
                         small Try some sample data:
                             ul#samples
                                 li
