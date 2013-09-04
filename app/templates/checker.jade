@@ -16,6 +16,18 @@ block content
         div.span8
             div#chart
         div.span4.text-center
-            p Number of observations: #{total}
             div#magnitudes
-            a(href='/').btn.btn-primary.btn-large Try another dataset
+    div.row
+        div.span12
+            p
+                | Number of observations: #{total}
+                br
+                | Remember that math alone cannot prove fraud!
+                | This test must be complemented with other means of investigation.
+            p.text-center
+                a(href='/').btn.btn-inverse.btn-large Try another dataset
+    div.row
+        div.span12.text-center
+            p
+                | You can share your result: 
+                a(href=shareUrl)= shareUrl

@@ -10,8 +10,8 @@ class Checker
     @getGlobalOptions : () ->
         {
             chart :
-                backgroundColor : '#eee'
-            colors: ['#e6501d', '#e6b371', '#cf7131', '#907761',
+                backgroundColor : '#ddd'
+            colors: ['#e6501d', '#494989', '#cf7131', '#907761',
                      '#f29a02', '#f8fbf4', '#fffdfb', '#ece3de',
                      '#f7f7db']
             yAxis :
@@ -37,6 +37,7 @@ class Checker
                 text : "Benford's law vs. your data"
                 style :
                     color : '#000'
+                    'font-weight' : 'bold'
             xAxis :
                 labels :
                     formatter : () ->

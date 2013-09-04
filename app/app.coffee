@@ -25,6 +25,7 @@ app.configure 'development', =>
 
 app.get '/', routes.index
 app.post '/checker', routes.checker
+app.get '/checker/:id', routes.checked
 
 #Launch server
 (http.createServer app).listen (app.get 'port'), () =>

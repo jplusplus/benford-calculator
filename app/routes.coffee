@@ -1,5 +1,15 @@
+#Connect to database
+mongodb = require 'mongodb'
+mongoserver = mongodb.Server 'localhost', 27017
+db = mongodb.Db 'benford', mongoserver, {w : 1}
+coll = null
+db.open () =>
+    coll = db.collection 'data'
+
+title = 'Benford&#39;s law checker'
+
 exports.index = (req, res) =>
-	res.render 'index'
+	res.render 'index', { title : title }
 
 exports.checker = (req, res) =>
     #Extract numbers from the text
@@ -40,12 +50,13 @@ exports.checker = (req, res) =>
         magnitudePercents.push [key,
                          (Math.round (magnitudes[key] * 100 / total) * 10) / 10]
 
-    #Finally, render the page
     locals =
-        results : results
-        total : total
         percents : percents
-        law : [
+        magnitudes : magnitudePercents
+        total : total
+    #Insert data in DB
+    coll.insert locals, {safe : yes}, (err, item) =>
+        locals.law = [
             [1, 30.1]
             [2, 17.6]
             [3, 12.5]
@@ -56,5 +67,21 @@ exports.checker = (req, res) =>
             [8, 5.1]
             [9, 4.6]
         ]
-        magnitudes : magnitudePercents
-    res.render 'checker', locals
+        #Finally, render the page
+        res.redirect '/checker/' + item[0]._id
+
+exports.checked = (req, res) =>
+    id = new mongodb.ObjectID req.params.id
+
+    coll.findOne {_id : id}, (err, doc) =>
+        if err? or not doc?
+            res.send 404
+        else
+            locals =
+                percents : doc.percents
+                magnitudes : doc.magnitudes
+                total : doc.total
+                shareUrl : req.protocol + '://' + (req.get 'host') + req.url
+                title : title
+
+            res.render 'checker', locals

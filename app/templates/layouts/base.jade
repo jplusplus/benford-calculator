@@ -1,7 +1,7 @@
 doctype 5
 html(lang='en', ng-app)
     head
-        title Benford's law online checker</title>
+        title!= title
         meta(http-equiv='Content-Type' content='text/html; charset=utf-8')
         !=css('/stylesheets/vendor/bootstrap.min.css')
         !=css('/stylesheets/vendor/bootstrap-responsive.min.css')
@@ -12,5 +12,8 @@ html(lang='en', ng-app)
         div.container
             div.row
                 div.span12
-                    h1 Benford's law online checker
+                    h1!= title
             block content
+            div.row
+                div.span12
+                    p &nbsp;

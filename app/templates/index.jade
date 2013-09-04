@@ -6,11 +6,11 @@ block scripts
 block content
     div.row(ng-controller='IndexCtl')
         form(action='/checker', method='POST')
-            div.span8
+            div.span9
                 textarea(name='data', placeholder='Paste your data here.',
                          rows='20', required) {{textareaData}}
 
-            div.span4
+            div.span3
                 ol
                     li
                         Paste the data you want to check.<br>
@@ -22,4 +22,5 @@ block content
                                 li
                                     a(ng-click="sampleData('population.txt')") Population by country
                     li Click 'Check data'!
-                button.btn.btn-primary.btn-large Check data
+                div.text-center
+                    button.btn.btn-inverse.btn-large Check data
