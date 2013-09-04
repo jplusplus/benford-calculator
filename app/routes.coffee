@@ -1,15 +1,36 @@
-#Connect to database
-mongodb = require 'mongodb'
-mongoserver = mongodb.Server 'localhost', 27017
-db = mongodb.Db 'benford', mongoserver, {w : 1}
-coll = null
-db.open () =>
-    coll = db.collection 'data'
-
 title = 'Benford&#39;s law checker'
 
+#Connect to database
+mongodb = require 'mongodb'
+connectURL = 'mongodb://localhost:27017/benford'
+coll = null
+mongodb.MongoClient.connect connectURL, (err, db) =>
+    coll = db.collection 'data'
+
+#Index page
 exports.index = (req, res) =>
 	res.render 'index', { title : title }
+
+renderCheckedPage = (doc, req, res, share = yes) =>
+    locals =
+        percents : doc.percents
+        magnitudes : doc.magnitudes
+        total : doc.total
+        title : title
+        law : [
+            [1, 30.1]
+            [2, 17.6]
+            [3, 12.5]
+            [4, 9.7]
+            [5, 7.9]
+            [6, 6.7]
+            [7, 5.8]
+            [8, 5.1]
+            [9, 4.6]
+        ]
+    if share
+        locals.shareUrl = req.protocol + '://' + (req.get 'host') + req.url
+    res.render 'checker', locals
 
 exports.checker = (req, res) =>
     #Extract numbers from the text
@@ -54,34 +75,20 @@ exports.checker = (req, res) =>
         percents : percents
         magnitudes : magnitudePercents
         total : total
-    #Insert data in DB
-    coll.insert locals, {safe : yes}, (err, item) =>
-        locals.law = [
-            [1, 30.1]
-            [2, 17.6]
-            [3, 12.5]
-            [4, 9.7]
-            [5, 7.9]
-            [6, 6.7]
-            [7, 5.8]
-            [8, 5.1]
-            [9, 4.6]
-        ]
-        #Finally, render the page
-        res.redirect '/checker/' + item[0]._id
+
+    if req.body.keep == 'on'
+        #Insert data in DB
+        coll.insert locals, {safe : yes}, (err, item) =>
+            #Finally, render the page
+            res.redirect '/checker/' + item[0]._id
+    else
+        renderCheckedPage locals, req, res, no
 
 exports.checked = (req, res) =>
     id = new mongodb.ObjectID req.params.id
 
     coll.findOne {_id : id}, (err, doc) =>
         if err? or not doc?
-            res.send 404
+            res.redirect '/'
         else
-            locals =
-                percents : doc.percents
-                magnitudes : doc.magnitudes
-                total : doc.total
-                shareUrl : req.protocol + '://' + (req.get 'host') + req.url
-                title : title
-
-            res.render 'checker', locals
+            renderCheckedPage doc, req, res
