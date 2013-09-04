@@ -12,18 +12,19 @@ block content
 
             div.span3
                 ol
-                    li
-                        Paste the data you want to check.<br>
-                        small
-                            Try some sample data:
+                    li Paste the data you want to check.<br>
+                        small Try some sample data:
                             ul#samples
                                 li
-                                    a(ng-click="sampleData('soviet.txt')") Soviet brochure, 1928
+                                    a(ng-click="sampleData('soviet.txt')")
+                                        | Soviet brochure, 1928
                                 li
-                                    a(ng-click="sampleData('population.txt')") Population by country
+                                    a(ng-click="sampleData('population.txt')")
+                                        | Population by country
                     li Click 'Check data'!
                 div.text-center
                     input(type='checkbox', name='keep', checked)#keep
-                    label(style='display:inline-block', for='keep') Store my result
+                    label(style='display:inline-block', for='keep')
+                        | Store my result
                     br
                     button.btn.btn-inverse.btn-large Check data
