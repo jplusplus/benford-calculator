@@ -7,7 +7,8 @@ title = 'Benford&#39;s law checker'
 connectURL = 'mongodb://localhost:27017/benford'
 coll = null
 mongodb.MongoClient.connect connectURL, (err, db) =>
-    coll = db.collection 'data'
+    if not err?
+        coll = db.collection 'data'
 
 #Index page
 exports.index = (req, res) =>
