@@ -56,6 +56,8 @@ class Checker
         }
 
     @getMagnitudeChartOptions : (magnitudes) ->
+        xAxis = []
+        xAxis.push key for key of magnitudes
         angular.extend (do Checker.getGlobalOptions), {
             title :
                 text : "Orders of magnitude"
@@ -68,6 +70,7 @@ class Checker
             legend :
                 enabled : no
             xAxis :
+                categories : xAxis
                 labels :
                     formatter : () ->
                         '10^' + @value
