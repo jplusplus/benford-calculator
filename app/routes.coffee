@@ -32,15 +32,19 @@ renderCheckedPage = (doc, req, res, share = yes) =>
             [9, 4.6]
         ]
     if share
+        #If the results were stored in DB, display the `share URL`
         locals.shareUrl = req.protocol + '://' + (req.get 'host') + req.url
     res.render 'checker', locals
 
 exports.checker = (req, res) =>
     globalString = req.body.data
 
+    #If there's uploaded file, concatenate its content with
+    # req.body.data (textarea's content)
     if req.files.file.name isnt '' || Array.isArray req.files.file
         if not Array.isArray req.files.file
             req.files.file = [req.files.file]
+        #If there's more than one file, we iterate trough each
         for file in req.files.file
             globalString += "\n" + do (fs.readFileSync file.path).toString
             fs.unlink file.path
@@ -49,18 +53,20 @@ exports.checker = (req, res) =>
     regex = /\d+([.,]?\d+)*/gm
     numbers = globalString.match regex
 
-    #Get the first digit for each
-    #Compute magnitudes in the same loop
+    #Get the first digit of each number
+    #Compute orders of magnitudes in the same loop
     total = 0
     results = {}
     magnitudes = {0 : 0}
     lastMagnitude = 0
     results[i] = 0 for i in [1..9]
     for i of numbers
+        #Remove all `,` and `.` from the number
         numbers[i] = parseInt (String numbers[i]).replace /[.,]/, ''
         if String(numbers[i])[0] > 0
             ++total
             ++results[String(numbers[i])[0]]
+            #Cast number into String and use (.length - 1) as order of magnitude
             pow = parseInt (String(numbers[i]).length - 1)
             if pow > lastMagnitude
                 magnitudes[j] = 0 for j in [(lastMagnitude + 1)..pow]
@@ -68,12 +74,14 @@ exports.checker = (req, res) =>
             ++magnitudes[String(pow)]
 
     #Compute %
+    #(Math.round (value * 100 / total) * 10) / 10) round value to two decimals
     percents = []
     for key, value of results
         percents.push [parseInt(key),
                        (Math.round (value * 100 / total) * 10) / 10]
 
     #Compute magnitudes %
+    #(Math.round (value * 100 / total) * 10) / 10) round value to two decimals
     magnitudePercents = []
     for key, val of magnitudes
         magnitudePercents.push [key,
@@ -90,13 +98,17 @@ exports.checker = (req, res) =>
             #Finally, render the page
             res.redirect '/checker/' + item[0]._id
     else
+        #Finally, render the page
         renderCheckedPage locals, req, res, no
 
 exports.checked = (req, res) =>
     id = new mongodb.ObjectID req.params.id
 
+    #Retrieve information from the database
     coll.findOne {_id : id}, (err, doc) =>
         if err? or not doc?
+            #If the specified ID isn't valid, redirect to home page
             res.redirect '/'
         else
+            #Finally, render the page
             renderCheckedPage doc, req, res

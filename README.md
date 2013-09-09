@@ -3,7 +3,7 @@
 ## How to install
 
 You'll need a working **Node.js** environment and a **MongoDB** server to run this application.  
-All dependencies will be installed with `npm install`.
+All dependencies will be installed with `npm install` (from the repository root).
 
 ## How to run
 
