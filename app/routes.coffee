@@ -61,15 +61,11 @@ exports.checker = (req, res) =>
         if String(numbers[i])[0] > 0
             ++total
             ++results[String(numbers[i])[0]]
-            pow = 0
-            tmp = numbers[i]
-            while tmp >= 10
-                tmp /= 10
-                ++pow
+            pow = parseInt (String(numbers[i]).length - 1)
             if pow > lastMagnitude
-                magnitudes[j] = 0 for j in [lastMagnitude..pow]
+                magnitudes[j] = 0 for j in [(lastMagnitude + 1)..pow]
                 lastMagnitude = pow
-            ++magnitudes[pow]
+            ++magnitudes[String(pow)]
 
     #Compute %
     percents = []
