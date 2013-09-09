@@ -4,9 +4,7 @@ mongodb = require 'mongodb'
 title = 'Benford&#39;s law checker'
 
 #Connect to database
-connectURL = process.env.MONGOLAB_URI
-          || process.env.MONGO_URI
-          || 'mongodb://localhost:27017/benford'
+connectURL = process.env.MONGOLAB_URI || process.env.MONGO_URI || 'mongodb://localhost:27017/benford'
 coll = null
 mongodb.MongoClient.connect connectURL, (err, db) =>
     if not err?
