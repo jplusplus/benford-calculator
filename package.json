@@ -1,4 +1,12 @@
 {
+  "name" : "benford-calculator",
+  "version" : "0.0.0",
+  "description" : "",
+  "main" : "app/app.coffee",
+  "scripts" : {
+    "start" : "coffee app/app.coffee"
+  },
+  "repository" : "https://github.com/jplusplus/benford-calculator.git",
   "dependencies": {
     "connect-assets": "~2.5.2",
     "jade": "~0.35.0",
