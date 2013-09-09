@@ -82,14 +82,14 @@ exports.checker = (req, res) =>
             ++magnitudes[String(pow)]
 
     #Compute %
-    #(Math.round (value * 100 / total) * 10) / 10) round value to two decimals
+    #(Math.round value * 10) / 10) round value to two decimals
     percents = []
     for key, value of results
         percents.push [parseInt(key),
                        (Math.round (value * 100 / total) * 10) / 10]
 
     #Compute magnitudes %
-    #(Math.round (value * 100 / total) * 10) / 10) round value to two decimals
+    #(Math.round value * 10) / 10) round value to two decimals
     magnitudePercents = []
     for key, val of magnitudes
         magnitudePercents.push [key,
