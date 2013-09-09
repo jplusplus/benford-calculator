@@ -15,6 +15,12 @@ exports.index = (req, res) =>
 	res.render 'index', { title : title }
 
 renderCheckedPage = (doc, req, res, share = yes) =>
+    #Check if 2 magnitudes > 80%
+    apply = yes
+    doc.magnitudes.map (leftHand) =>
+        doc.magnitudes.map (rightHand) =>
+            if leftHand isnt rightHand and leftHand[1] + rightHand[1] >= 80
+                apply = no
     locals =
         percents : doc.percents
         magnitudes : doc.magnitudes
@@ -31,6 +37,8 @@ renderCheckedPage = (doc, req, res, share = yes) =>
             [8, 5.1]
             [9, 4.6]
         ]
+        apply : apply
+
     if share
         #If the results were stored in DB, display the `share URL`
         locals.shareUrl = req.protocol + '://' + (req.get 'host') + req.url
@@ -45,7 +53,7 @@ exports.checker = (req, res) =>
         if not Array.isArray req.files.file
             req.files.file = [req.files.file]
         #If there's more than one file, we iterate trough each
-        for file in req.files.file
+        req.files.map (file) =>
             globalString += "\n" + do (fs.readFileSync file.path).toString
             fs.unlink file.path
 
