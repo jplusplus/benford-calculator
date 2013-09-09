@@ -15,12 +15,6 @@ exports.index = (req, res) =>
 	res.render 'index', { title : title }
 
 renderCheckedPage = (doc, req, res, share = yes) =>
-    #Check if 2 magnitudes > 80%
-    apply = yes
-    doc.magnitudes.map (leftHand) =>
-        doc.magnitudes.map (rightHand) =>
-            if leftHand isnt rightHand and leftHand[1] + rightHand[1] >= 80
-                apply = no
     locals =
         percents : doc.percents
         magnitudes : doc.magnitudes
@@ -37,7 +31,14 @@ renderCheckedPage = (doc, req, res, share = yes) =>
             [8, 5.1]
             [9, 4.6]
         ]
-        apply : apply
+
+    for i of locals.law
+        pe = locals.law[i][1] / 100
+        po = locals.percents[i][1] / 100
+        n = locals.total
+
+        si = Math.pow (pe * (1 - pe)) / n, (1 / 2)
+        z = ((Math.abs po - pe) - (1 / (2 * n))) / si;
 
     if share
         #If the results were stored in DB, display the `share URL`
@@ -57,6 +58,21 @@ exports.checker = (req, res) =>
             globalString += "\n" + do (fs.readFileSync file.path).toString
             fs.unlink file.path
 
+    thousand = ','
+    #Attempt to detect if the decimal separator is `.` or `,`
+    #First, compare the proportions of numbers matching XX,XXX.X and XX.XXX,X
+    comma = (globalString.match /\d{1,3}(,\d{3})+(\.\d+)+/gm) or []
+    dot = (globalString.match /\d{1,3}(\.\d{3})+(,\d+)+/gm) or []
+    if (comma.length > 0 or dot.length > 0) and comma.length isnt dot.length
+        thousand = comma.length > dot.length and ',' or '.'
+    else
+        #If this is not concluding, compare the proportions of numbers matching
+        # XX,XXX and XX.XXX
+        comma = (globalString.match /\d{1,3}(,\d{3})+/gm) or []
+        dot = (globalString.match /\d{1,3}(\.\d{3})+/gm) or []
+        if (comma.length > 0 or dot.length > 0) and comma.length isnt dot.length
+            thousand = comma.length > dot.length and ',' or '.'
+
     #Extract numbers from the text
     regex = /\d+([.,]?\d+)*/gm
     numbers = globalString.match regex
@@ -70,7 +86,7 @@ exports.checker = (req, res) =>
     results[i] = 0 for i in [1..9]
     for i of numbers
         #Remove all `,` and `.` from the number
-        numbers[i] = parseInt (String numbers[i]).replace /[.,]/, ''
+        numbers[i] = parseInt (String numbers[i]).replace thousand, ''
         if String(numbers[i])[0] > 0
             ++total
             ++results[String(numbers[i])[0]]
