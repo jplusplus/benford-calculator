@@ -6,10 +6,11 @@ block scripts
 block content
     form(action='/checker', method='POST', enctype='multipart/form-data')
         div.row
-            div.span9
+            div.span8
                 textarea(name='data', placeholder='Paste your data here.',
                          rows='20') {{textareaData}}
-            div.span3
+            div.span4
+                br
                 h3 Try a sample data:
                 small
                     ul#samples
@@ -20,13 +21,13 @@ block content
                             a(ng-click="sampleData('population.txt')")
                                 | Population by country
         div.row
-            div.span9
+            div.span8
                 div.row
                     div.span6
                         h3 Or import a CSV file
                     div.span3
                         input(type='file', accept='text/*', name='file', multiple)
-            div.span3
+            div.span4
                 div.text-center
                     button.btn.btn-inverse.btn-block.btn-large Check data
                     br

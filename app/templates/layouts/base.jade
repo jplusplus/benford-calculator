@@ -32,18 +32,20 @@ html(lang='en', ng-app)
                         | Read more at 
                         a(href="https://en.wikipedia.org/wiki/Benford's_law") Wikipedia
                     p
-                        a.btn.btn-link.btn-small(href='#', ng-click='toggleHead()') {{headerLink}}
+                        a.btn.btn-link.btn-small(href='#', ng-click='toggleHead()')
+                            | {{headerLink}}
             div.row
-                div.span1 &nbsp;
+                div.span8
+                    a.btn.disabled.btn-large(ng-class="step1")
+                        | 1. Input data
                 div.span4
-                    p.step
-                        span(ng-class="step1") 1. Input data
-                div.span2 &nbsp;
-                div.span4
-                    p.step
-                        span(ng-class="step2") 2. Visualize results
-                div.span1 &nbsp;
+                    a.btn.disabled.btn-large.btn-block(ng-class="step2")
+                        | 2. Visualize results
+            div.row
+                div.span12 &nbsp;
             block content
+            div.row
+                div.span12 &nbsp;
             div.row
                 div.span10
                     p

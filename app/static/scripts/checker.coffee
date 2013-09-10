@@ -66,6 +66,7 @@ class Checker extends BaseCtl
                 text : "Orders of magnitude"
                 style :
                     color : '#000'
+                    'font-weight' : 'bold'
             series : [{
                 type : 'column'
                 data : magnitudes
