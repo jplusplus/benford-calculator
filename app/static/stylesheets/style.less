@@ -41,16 +41,33 @@ h3 {
 
 .strong { font-weight: bold; }
 
-.animate-hide.ng-hide {
-    display: block !important;
-    line-height: 0px;
-    opacity: 0;
-    margin: 0;
-}
+.animate-hide.ng-hide,
+.row-animate-hide.ng-hide,
+.canvas-animate-hide.ng-hide { display: block !important; }
 
-.animate-hide {
+.animate-hide, .row-animate-hide, .canvas-animate-hide {
     -webkit-transition: all 0.2s linear;
     -moz-transition: all 0.2s linear;
     -o-transition: all 0.2s linear;
     transition: all 0.2s linear;
 }
+
+.animate-hide.ng-hide {
+    line-height: 0px;
+    opacity: 0;
+    margin: 0;
+}
+
+.row-animate-hide.ng-hide { height: 0px; }
+.row-animate-hide {
+    position: relative;
+    top: 0px;
+    overflow: hidden;
+    height: 400px
+}
+
+.canvas-animate-hide {
+    position: relative;
+    top: 0px;
+}
+.canvas-animate-hide.ng-hide { top: -300px; }

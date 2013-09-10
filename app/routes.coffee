@@ -9,6 +9,8 @@ coll = null
 mongodb.MongoClient.connect connectURL, (err, db) =>
     if not err?
         coll = db.collection 'data'
+    else
+        console.error err
 
 #Index page
 exports.index = (req, res) =>

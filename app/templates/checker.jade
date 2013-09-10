@@ -15,18 +15,37 @@ block content
     div.row
         div.span8
             div#chart
-        div.span4.text-center
+        div.span4
+            h3 z-statistic:
+            if shareUrl
+                div.row
+                    div.span2
+                        a(href='/').btn.btn-inverse.btn-large.btn-block
+                            | New data set
+                    div.span2
+                        a(href=shareUrl).btn.btn-large.btn-block
+                            | Share result
+            else
+                a(href='/').btn.btn-inverse.btn-large.btn-block
+                    | New data set
+    div.row.row-animate-hide(ng-hide='magHidden')
+        div.span8.text-center.canvas-animate-hide(ng-hide='magHidden')
             div#magnitudes
-    div.row
+        div.span4.canvas-animate-hide(ng-hide='magHidden')
+            p
+                br
+                | Benford's law generally does not apply if you have less than
+                |  2 orders of magnitude represented.
+            br
+            a.btn.btn-link.btn-small(ng-click='magHidden=!magHidden') [x] Close
+    div.row(ng-hide='!magHidden')
+        div.span12
+            a.btn.btn-link.btn-small(ng-click='magHidden=!magHidden')
+                | Show orders of magnitudes
+    div.row.ng-hide
         div.span12
             p
                 | Number of observations: #{total}
                 br
                 | Remember that math alone cannot prove fraud!
                 | This test must be complemented with other means of investigation.
-                if shareUrl
-                    br
-                    | You can share your result: 
-                    a(href=shareUrl)= shareUrl
-            p.text-center
-                a(href='/').btn.btn-inverse.btn-large Try another dataset

@@ -7,6 +7,7 @@ class Checker extends BaseCtl
 
         #Scope properties
         @scope.step2 = 'strong'
+        @scope.magHidden = yes
 
     @getGlobalOptions : () ->
         {
