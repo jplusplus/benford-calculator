@@ -55,7 +55,7 @@ exports.checker = (req, res) =>
         if not Array.isArray req.files.file
             req.files.file = [req.files.file]
         #If there's more than one file, we iterate trough each
-        req.files.map (file) =>
+        req.files.file.map (file) =>
             globalString += "\n" + do (fs.readFileSync file.path).toString
             fs.unlink file.path
 
@@ -117,7 +117,7 @@ exports.checker = (req, res) =>
         magnitudes : magnitudePercents
         total : total
 
-    if req.body.keep == 'on'
+    if req.body.keep == 'on' and locals.total > 0
         #Insert data in DB
         coll.insert locals, {safe : yes}, (err, item) =>
             #Finally, render the page

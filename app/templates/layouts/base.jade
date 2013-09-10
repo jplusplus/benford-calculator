@@ -32,25 +32,26 @@ html(lang='en', ng-app)
                         | Read more at 
                         a(href="https://en.wikipedia.org/wiki/Benford's_law") Wikipedia
                     p
-                        a(href='#', ng-click='toggleHead()') {{headerLink}}
+                        a.btn.btn-link.btn-small(href='#', ng-click='toggleHead()') {{headerLink}}
             div.row
                 div.span1 &nbsp;
                 div.span4
                     p.step
-                        a(ng-class="step1") 1. Input data
+                        span(ng-class="step1") 1. Input data
                 div.span2 &nbsp;
                 div.span4
                     p.step
-                        a(ng-class="step2") 2. Visualize results
+                        span(ng-class="step2") 2. Visualize results
                 div.span1 &nbsp;
             block content
             div.row
-                div.span9
+                div.span10
                     p
                         | Journalism++ builds tools for data-driven storytellers.
-                        |  Get in touch at 
+                        br
+                        | Get in touch at 
                         a(href='mailto:contact@jplusplus.org') contact@jplusplus.org
                         | .
-                div.span3
+                div.span2
                     p
                         img(src='/jplusplus.png')
