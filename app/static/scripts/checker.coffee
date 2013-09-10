@@ -1,11 +1,12 @@
-class Checker
+class Checker extends BaseCtl
     #Inject dependencies
     @$inject : ['$scope']
 
     constructor : (@scope) ->
-        #Scope properties
+        super arguments
 
-        #Scope methods
+        #Scope properties
+        @scope.step2 = 'strong'
 
     @getGlobalOptions : () ->
         {

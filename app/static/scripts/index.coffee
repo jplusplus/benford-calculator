@@ -1,11 +1,13 @@
-class IndexCtl
+class IndexCtl extends BaseCtl
     #Inject dependencies
     @$inject : ['$scope', '$http']
 
     constructor : (@scope, @http) ->
+        super arguments
+
         #Scope properties
-        @scope.title = 'Benford\'s law online checker'
         @scope.textareaData = ''
+        @scope.step1 = 'strong'
 
         #Scope methods
         @scope.sampleData = (sampleName) =>

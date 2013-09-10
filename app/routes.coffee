@@ -1,7 +1,7 @@
 fs = require 'fs'
 mongodb = require 'mongodb'
 
-title = 'Benford&#39;s law checker'
+title = 'Benford&#39;s Law Checker'
 
 #Connect to database
 connectURL = process.env.MONGOLAB_URI || process.env.MONGO_URI || 'mongodb://localhost:27017/benford'
@@ -12,7 +12,7 @@ mongodb.MongoClient.connect connectURL, (err, db) =>
 
 #Index page
 exports.index = (req, res) =>
-	res.render 'index', { title : title }
+	res.render 'index', { title : title, ngController : 'IndexCtl' }
 
 renderCheckedPage = (doc, req, res, share = yes) =>
     locals =
@@ -31,6 +31,7 @@ renderCheckedPage = (doc, req, res, share = yes) =>
             [8, 5.1]
             [9, 4.6]
         ]
+        ngController : 'Checker'
 
     for i of locals.law
         pe = locals.law[i][1] / 100

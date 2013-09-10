@@ -1,4 +1,7 @@
-html, body { background: #232323; }
+html, body {
+    background: #232323;
+    font-size: 16px;
+}
 
 textarea { width: 100%; }
 
@@ -9,7 +12,7 @@ ul#samples a { cursor: pointer; }
     padding: 0 20px;
 }
 
-h1 { margin: 40px 0; }
+h1 { margin: 40px 0 10px 0; }
 
 label {
     display: inline-block;
@@ -17,3 +20,43 @@ label {
 }
 
 input[type=checkbox] { vertical-align: text-top; }
+
+p { line-height: 25px; }
+
+p.step {
+    width: 100%;
+    border: 1px solid rgb(0, 186, 254);
+    border-radius: 2em;
+    height: 33px;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 7px;
+
+    margin: 15px 0;
+
+    a {
+        text-decoration: none;
+    }
+}
+
+h3 {
+    margin-top: 0;
+    padding-top: 0;
+    line-height: 20px;
+}
+
+.strong { font-weight: bold; }
+
+.animate-hide.ng-hide {
+    display: block !important;
+    line-height: 0px;
+    opacity: 0;
+    margin: 0;
+}
+
+.animate-hide {
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}

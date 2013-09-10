@@ -4,27 +4,32 @@ block scripts
     !=js('/scripts/index.js')
 
 block content
-    div.row(ng-controller='IndexCtl')
-        form(action='/checker', method='POST', enctype='multipart/form-data')
+    form(action='/checker', method='POST', enctype='multipart/form-data')
+        div.row
             div.span9
                 textarea(name='data', placeholder='Paste your data here.',
                          rows='20') {{textareaData}}
-                input(type='file', accept='text/*', name='file', multiple)
             div.span3
-                ol
-                    li Paste the data you want to check or select a file.<br>
-                        small Try some sample data:
-                            ul#samples
-                                li
-                                    a(ng-click="sampleData('soviet.txt')")
-                                        | Soviet brochure, 1928
-                                li
-                                    a(ng-click="sampleData('population.txt')")
-                                        | Population by country
-                    li Click 'Check data'!
+                h3 Try a sample data:
+                small
+                    ul#samples
+                        li
+                            a(ng-click="sampleData('soviet.txt')")
+                                | Soviet brochure, 1928
+                        li
+                            a(ng-click="sampleData('population.txt')")
+                                | Population by country
+        div.row
+            div.span9
+                div.row
+                    div.span6
+                        h3 Or import a CSV file
+                    div.span3
+                        input(type='file', accept='text/*', name='file', multiple)
+            div.span3
                 div.text-center
-                    button.btn.btn-inverse.btn-large Check data
+                    button.btn.btn-primary.btn-block.btn-large Check data
                     br
                     input(type='checkbox', name='keep', checked)#keep
                     label(style='display:inline-block', for='keep')
-                        | Store my result                    
+                        | Store my result

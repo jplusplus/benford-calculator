@@ -7,13 +7,50 @@ html(lang='en', ng-app)
         !=css('/stylesheets/vendor/bootstrap-responsive.min.css')
         !=css('/stylesheets/style.css')
         !=js('/scripts/vendor/angular.min.js')
+        !=js('/scripts/vendor/angular-animate.min.js')
+        !=js('/scripts/base')
         block scripts
     body
-        div.container
+        div.container(ng-controller='#{ngController}')
             div.row
                 div.span12
                     h1!= title
-            block content
             div.row
                 div.span12
-                    p &nbsp;
+                    p
+                        | Benford's law is a statistical observation about the distribution
+                        | of numbers that's very usefull to detect fraud.
+                    p.animate-hide.ng-hide(ng-hide='hidden')
+                        | In many domains, such as disbursement data, sales, lengths etc. the first
+                        | digit of a number follows a precise distribution. In one number out of 3,
+                        | for instance, the first digit is a 1. If a data set does not follow this
+                        | distribution, it might be an indication of fraud. Tax authorities around
+                        | the globe use it, with other tools, to spot wrongdoers. Please note that
+                        | Benford's law does not apply to constrained data (height of human beings,
+                        | invoice numbers, etc.).
+                        br
+                        | Read more at 
+                        a(href="https://en.wikipedia.org/wiki/Benford's_law") Wikipedia
+                    p
+                        a(href='#', ng-click='toggleHead()') {{headerLink}}
+            div.row
+                div.span1 &nbsp;
+                div.span4
+                    p.step
+                        a(ng-class="step1") 1. Input data
+                div.span2 &nbsp;
+                div.span4
+                    p.step
+                        a(ng-class="step2") 2. Visualize results
+                div.span1 &nbsp;
+            block content
+            div.row
+                div.span9
+                    p
+                        | Journalism++ builds tools for data-driven storytellers.
+                        |  Get in touch at 
+                        a(href='mailto:contact@jplusplus.org') contact@jplusplus.org
+                        | .
+                div.span3
+                    p
+                        img(src='/jplusplus.png')
