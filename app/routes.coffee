@@ -89,7 +89,7 @@ exports.checker = (req, res) =>
     results[i] = 0 for i in [1..9]
     for i of numbers
         #Remove all `,` and `.` from the number
-        numbers[i] = parseInt (String numbers[i]).replace thousand, ''
+        numbers[i] = parseInt (String numbers[i]).replace (RegExp thousand, 'g'), ''
         if String(numbers[i])[0] > 0
             ++total
             ++results[String(numbers[i])[0]]
