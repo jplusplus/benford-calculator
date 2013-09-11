@@ -25,23 +25,22 @@ renderCheckedPage = (doc, req, res, share = yes) =>
         ngController : 'Checker'
         range : []
         z : 0
-
-    law = [
-        [1, 30.1]
-        [2, 17.6]
-        [3, 12.5]
-        [4, 9.7]
-        [5, 7.9]
-        [6, 6.7]
-        [7, 5.8]
-        [8, 5.1]
-        [9, 4.6]
-    ]
+        law : [
+            [1, 30.1]
+            [2, 17.6]
+            [3, 12.5]
+            [4, 9.7]
+            [5, 7.9]
+            [6, 6.7]
+            [7, 5.8]
+            [8, 5.1]
+            [9, 4.6]
+        ]
 
     #Compute some statistical values...
-    for i of law
+    for i of locals.law
         #Expected proportion
-        pe = law[i][1] / 100
+        pe = locals.law[i][1] / 100
         #Observed proportion
         po = locals.percents[i][1] / 100
         n = locals.total
@@ -61,7 +60,7 @@ renderCheckedPage = (doc, req, res, share = yes) =>
         else
             z = abs / si
 
-        index = law[i][0]
+        index = locals.law[i][0]
         locals.range[i] = [index, (Math.round low * 10) / 10, (Math.round up * 10) / 10]
         locals.z = (Math.round z * 1000) / 1000 if z > locals.z
 

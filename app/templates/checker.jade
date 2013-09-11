@@ -9,7 +9,8 @@ block scripts
         $ () =>
             locals = JSON.parse('!{JSON.stringify(locals)}')
             ($ '#chart').highcharts Checker.getLawChartOptions locals.percents,
-                                                               locals.range
+                                                               locals.law,
+                                                               locals.ranges
             ($ '#magnitudes').highcharts Checker.getMagnitudeChartOptions locals.magnitudes
 
 block content
@@ -23,6 +24,10 @@ block content
                 small
                     a(href="https://github.com/jplusplus/benford-calculator/wiki/Frequently-Asked-Questions#whats-the-z-statistic")
                         | What's this?
+            if z > 1.96
+                p
+                    | It seems that the data does not comply with Benford's law.
+                    | Keep in mind that this is no proof.
             br
             if shareUrl
                 div.row

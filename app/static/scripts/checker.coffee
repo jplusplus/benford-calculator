@@ -34,7 +34,7 @@ class Checker extends BaseCtl
                 y : 35
         }
 
-    @getLawChartOptions : (percents, range) ->
+    @getLawChartOptions : (percents, data2) ->
         angular.extend (do Checker.getGlobalOptions), {
             title :
                 text : "Benford's law vs. your data"
@@ -46,15 +46,20 @@ class Checker extends BaseCtl
                     formatter : () ->
                         @value
             series : [
+#                {
+#                    type : 'columnrange'
+#                    name : "Benford's law"
+#                    data : data2
+#                }
                 {
-                    type : 'columnrange'
-                    name : "Benford's law"
-                    data : range
+                    type : "column"
+                    name : 'Your data'
+                    data : percents
                 }
                 {
                     type : "spline"
-                    name : 'Your data'
-                    data : percents
+                    name : "Benford's law"
+                    data : data2
                 }
             ]
         }
@@ -85,7 +90,7 @@ class Checker extends BaseCtl
         angular.extend (do Checker.getGlobalOptions), {
             chart :
                 backgroundColor : '#ddd'
-                height : 350
+                height : 400
             title :
                 text : "z-statistic"
                 style :
