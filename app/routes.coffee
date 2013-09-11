@@ -24,7 +24,7 @@ renderCheckedPage = (doc, req, res, share = yes) =>
         title : title
         ngController : 'Checker'
         range : []
-        z : []
+        z : 0
 
     law = [
         [1, 30.1]
@@ -63,7 +63,7 @@ renderCheckedPage = (doc, req, res, share = yes) =>
 
         index = law[i][0]
         locals.range[i] = [index, (Math.round low * 10) / 10, (Math.round up * 10) / 10]
-        locals.z[i] = [index, (Math.round z * 1000) / 1000]
+        locals.z = (Math.round z * 1000) / 1000 if z > locals.z
 
     if share
         #If the results were stored in DB, display the `share URL`

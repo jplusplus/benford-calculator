@@ -11,14 +11,19 @@ block scripts
             ($ '#chart').highcharts Checker.getLawChartOptions locals.percents,
                                                                locals.range
             ($ '#magnitudes').highcharts Checker.getMagnitudeChartOptions locals.magnitudes
-            ($ '#zchart').highcharts Checker.getZChartOptions locals.z
 
 block content
     div.row
         div.span8
             div#chart
         div.span4
-            div#zchart
+            br
+            h3 Higher z-statistic: #{z}
+            p.text-right
+                small
+                    a(href="https://github.com/jplusplus/benford-calculator/wiki/Frequently-Asked-Questions#whats-the-z-statistic")
+                        | What's this?
+            br
             if shareUrl
                 div.row
                     div.span2
