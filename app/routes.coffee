@@ -54,7 +54,7 @@ renderCheckedPage = (doc, req, res, share = yes) =>
         low = (pe - 1.96 * si - (1 / (2 * n))) * 100
         low = 0 if low < 0
         locals.range[i] = [index, (Math.round low * 10) / 10, (Math.round up * 10) / 10]
-        console.log z
+#    console.log doc
 
     if share
         #If the results were stored in DB, display the `share URL`
@@ -102,7 +102,7 @@ exports.checker = (req, res) =>
     results[i] = 0 for i in [1..9]
     for i of numbers
         #Remove all `,` and `.` from the number
-        numbers[i] = parseInt (String numbers[i]).replace (RegExp thousand, 'g'), ''
+        numbers[i] = parseInt (String numbers[i]).replace (RegExp "[#{thousand}]", 'g'), ''
         if String(numbers[i])[0] > 0
             ++total
             ++results[String(numbers[i])[0]]
@@ -128,6 +128,7 @@ exports.checker = (req, res) =>
                          (Math.round (magnitudes[key] * 100 / total) * 10) / 10]
 
     locals =
+        numbers : results
         percents : percents
         magnitudes : magnitudePercents
         total : total
