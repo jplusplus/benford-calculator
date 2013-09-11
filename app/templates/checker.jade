@@ -9,7 +9,6 @@ block scripts
         $ () =>
             locals = JSON.parse('!{JSON.stringify(locals)}')
             ($ '#chart').highcharts Checker.getLawChartOptions locals.percents,
-                                                               locals.law,
                                                                locals.range
             ($ '#magnitudes').highcharts Checker.getMagnitudeChartOptions locals.magnitudes
 

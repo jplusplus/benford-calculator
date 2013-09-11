@@ -22,22 +22,23 @@ renderCheckedPage = (doc, req, res, share = yes) =>
         magnitudes : doc.magnitudes
         total : doc.total
         title : title
-        law : [
-            [1, 30.1]
-            [2, 17.6]
-            [3, 12.5]
-            [4, 9.7]
-            [5, 7.9]
-            [6, 6.7]
-            [7, 5.8]
-            [8, 5.1]
-            [9, 4.6]
-        ]
         ngController : 'Checker'
+        range : []
 
-    locals.range = []
-    for i of locals.law
-        pe = locals.law[i][1] / 100
+    law = [
+        [1, 30.1]
+        [2, 17.6]
+        [3, 12.5]
+        [4, 9.7]
+        [5, 7.9]
+        [6, 6.7]
+        [7, 5.8]
+        [8, 5.1]
+        [9, 4.6]
+    ]
+
+    for i of law
+        pe = law[i][1] / 100
         po = locals.percents[i][1] / 100
         n = locals.total
 
@@ -48,11 +49,12 @@ renderCheckedPage = (doc, req, res, share = yes) =>
             z = (abs - (1 / (2 * n))) / si
         else
             z = abs / si
-        index = locals.law[i][0]
+        index = law[i][0]
         up = (pe + 1.96 * si + (1 / (2 * n))) * 100
         low = (pe - 1.96 * si - (1 / (2 * n))) * 100
+        low = 0 if low < 0
         locals.range[i] = [index, (Math.round low * 10) / 10, (Math.round up * 10) / 10]
-    console.log locals
+        console.log z
 
     if share
         #If the results were stored in DB, display the `share URL`

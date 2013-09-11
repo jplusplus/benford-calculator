@@ -34,7 +34,7 @@ class Checker extends BaseCtl
                 y : 35
         }
 
-    @getLawChartOptions : (percents, law, range) ->
+    @getLawChartOptions : (percents, range) ->
         angular.extend (do Checker.getGlobalOptions), {
             title :
                 text : "Benford's law vs. your data"
