@@ -46,7 +46,7 @@ class Checker extends BaseCtl
             series : [
                 {
                     type : 'columnrange'
-                    name : 'Bounds'
+                    name : "Benford's law"
                     data : range
                 }
                 {
