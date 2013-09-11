@@ -13,7 +13,7 @@ class Checker extends BaseCtl
         {
             chart :
                 backgroundColor : '#ddd'
-            colors: ['#e6501d', '#494989', '#cf7131', '#907761',
+            colors: ['#e6501d', '#333', '#494989', '#907761',
                      '#f29a02', '#f8fbf4', '#fffdfb', '#ece3de',
                      '#f7f7db']
             yAxis :
@@ -22,8 +22,7 @@ class Checker extends BaseCtl
                     formatter : () ->
                         @value + '%'
             tooltip :
-                formatter : () ->
-                    @y + '%'
+                shared : yes
             credits :
                 enabled : no
             legend :
@@ -33,7 +32,7 @@ class Checker extends BaseCtl
                 y : 35
         }
 
-    @getLawChartOptions : (percents, law) ->
+    @getLawChartOptions : (percents, law, range) ->
         angular.extend (do Checker.getGlobalOptions), {
             title :
                 text : "Benford's law vs. your data"
@@ -46,14 +45,19 @@ class Checker extends BaseCtl
                         @value
             series : [
                 {
-                    type : "column"
-                    name : 'Your data'
-                    data : percents
+                    type : 'columnrange'
+                    name : 'Bounds'
+                    data : range
                 }
                 {
                     type : 'spline'
                     name : "Benford's distribution"
                     data : law
+                }
+                {
+                    type : "spline"
+                    name : 'Your data'
+                    data : percents
                 }
             ]
         }

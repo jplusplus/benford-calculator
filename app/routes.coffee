@@ -35,13 +35,24 @@ renderCheckedPage = (doc, req, res, share = yes) =>
         ]
         ngController : 'Checker'
 
+    locals.range = []
     for i of locals.law
         pe = locals.law[i][1] / 100
         po = locals.percents[i][1] / 100
         n = locals.total
 
         si = Math.pow (pe * (1 - pe)) / n, (1 / 2)
-        z = ((Math.abs po - pe) - (1 / (2 * n))) / si;
+        abs = (Math.abs po - pe)
+        z = null
+        if abs > (1 / (2 * n))
+            z = (abs - (1 / (2 * n))) / si
+        else
+            z = abs / si
+        index = locals.law[i][0]
+        up = (pe + 1.96 * si + (1 / (2 * n))) * 100
+        low = (pe - 1.96 * si - (1 / (2 * n))) * 100
+        locals.range[i] = [index, (Math.round low * 10) / 10, (Math.round up * 10) / 10]
+    console.log locals
 
     if share
         #If the results were stored in DB, display the `share URL`
