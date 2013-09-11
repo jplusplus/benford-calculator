@@ -13,7 +13,7 @@ class Checker extends BaseCtl
         {
             chart :
                 backgroundColor : '#ddd'
-            colors: ['#e6501d', '#333', '#494989', '#907761',
+            colors: ['#e6501d', '#494989', '#000', '#907761',
                      '#f29a02', '#f8fbf4', '#fffdfb', '#ece3de',
                      '#f7f7db']
             yAxis :
@@ -48,11 +48,6 @@ class Checker extends BaseCtl
                     type : 'columnrange'
                     name : 'Bounds'
                     data : range
-                }
-                {
-                    type : 'spline'
-                    name : "Benford's distribution"
-                    data : law
                 }
                 {
                     type : "spline"
