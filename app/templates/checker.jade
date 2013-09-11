@@ -11,15 +11,14 @@ block scripts
             ($ '#chart').highcharts Checker.getLawChartOptions locals.percents,
                                                                locals.range
             ($ '#magnitudes').highcharts Checker.getMagnitudeChartOptions locals.magnitudes
+            ($ '#zchart').highcharts Checker.getZChartOptions locals.z
 
 block content
     div.row
         div.span8
             div#chart
         div.span4
-            br
-            h3 z-statistic:
-            br
+            div#zchart
             if shareUrl
                 div.row
                     div.span2

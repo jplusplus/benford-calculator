@@ -79,4 +79,32 @@ class Checker extends BaseCtl
                 categories : xAxis
         }
 
+    @getZChartOptions : (z) ->
+        xAxis = [0]
+        xAxis.push item[0] for item in z
+        angular.extend (do Checker.getGlobalOptions), {
+            chart :
+                backgroundColor : '#ddd'
+                height : 350
+            title :
+                text : "z-statistic"
+                style :
+                    color : '#000'
+                    'font-weight' : 'bold'
+            series : [{
+                type : 'column'
+                name : 'z-statistic'
+                data : z
+            }]
+            legend :
+                enabled : no
+            yAxis :
+                title : ''
+            xAxis :
+                categories : xAxis
+            tooltip :
+                shared : yes
+                followPointer : yes
+        }
+
 window.Checker = Checker

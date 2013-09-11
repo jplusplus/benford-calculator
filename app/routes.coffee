@@ -24,6 +24,7 @@ renderCheckedPage = (doc, req, res, share = yes) =>
         title : title
         ngController : 'Checker'
         range : []
+        z : []
 
     law = [
         [1, 30.1]
@@ -37,24 +38,32 @@ renderCheckedPage = (doc, req, res, share = yes) =>
         [9, 4.6]
     ]
 
+    #Compute some statistical values...
     for i of law
+        #Expected proportion
         pe = law[i][1] / 100
+        #Observed proportion
         po = locals.percents[i][1] / 100
         n = locals.total
 
+        #Standard deviation
         si = Math.pow (pe * (1 - pe)) / n, (1 / 2)
+
+        #Lower and upper bounds
+        up = (pe + 1.96 * si + (1 / (2 * n))) * 100
+        low = (pe - 1.96 * si - (1 / (2 * n))) * 100
+
         abs = (Math.abs po - pe)
+        #Z-statistic
         z = null
         if abs > (1 / (2 * n))
             z = (abs - (1 / (2 * n))) / si
         else
             z = abs / si
+
         index = law[i][0]
-        up = (pe + 1.96 * si + (1 / (2 * n))) * 100
-        low = (pe - 1.96 * si - (1 / (2 * n))) * 100
-        low = 0 if low < 0
         locals.range[i] = [index, (Math.round low * 10) / 10, (Math.round up * 10) / 10]
-#    console.log doc
+        locals.z[i] = [index, (Math.round z * 1000) / 1000]
 
     if share
         #If the results were stored in DB, display the `share URL`
