@@ -2,21 +2,16 @@ doctype 5
 html(lang='en', ng-app)
     head
         title!= title
-        meta(http-equiv='Content-Type' content='text/html; charset=utf-8')
-        !=css('/stylesheets/vendor/bootstrap.min.css')
-        !=css('/stylesheets/vendor/bootstrap-responsive.min.css')
+        meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
         !=css('/stylesheets/style.css')
-        !=js('/scripts/vendor/angular.min.js')
-        !=js('/scripts/vendor/angular-animate.min.js')
-        !=js('/scripts/base')
         block scripts
     body
-        div.container(ng-controller='#{ngController}')
-            div.row
-                div.span12
+        .container(ng-controller='#{ngController}')
+            .row
+                .col-sm-12
                     h1!= title
-            div.row
-                div.span12
+            .row
+                .col-sm-12
                     p
                         | Benford's law is a statistical observation about the distribution
                         | of numbers that's very usefull to detect fraud.
@@ -34,28 +29,28 @@ html(lang='en', ng-app)
                     p
                         a.btn.btn-link.btn-small(href='#', ng-click='toggleHead()')
                             | {{headerLink}}
-            div.row
-                div.span12 &nbsp;
-            div.row
-                div.span8
+            .row
+                .col-sm-12 &nbsp;
+            .row
+                .span8
                     a.btn.disabled.btn-large(ng-class="step1")
                         | 1. Input data
-                div.span4
+                .span4
                     a.btn.disabled.btn-large.btn-block(ng-class="step2")
                         | 2. Visualize results
-            div.row
-                div.span12 &nbsp;
+            .row
+                .col-sm-12 &nbsp;
             block content
-            div.row
-                div.span12 &nbsp;
-            div.row
-                div.span10
+            .row
+                .col-sm-12 &nbsp;
+            .row
+                .span10
                     p
                         | Journalism++ builds tools for data-driven storytellers.
                         br
                         | Get in touch at 
                         a(href='mailto:contact@jplusplus.org') contact@jplusplus.org
                         | .
-                div.span2
+                .span2
                     p
                         img(src='/jplusplus.png')

@@ -1,15 +1,17 @@
 extends ./layouts/base
 
 block scripts
+    !=js('/scripts/vendor/angular.min.js')
+    !=js('/scripts/vendor/angular-animate.min.js')
+    !=js('/scripts/base')
     !=js('/scripts/index.js')
 
 block content
     form(action='/checker', method='POST', enctype='multipart/form-data')
-        div.row
-            div.span8
-                textarea(name='data', placeholder='Paste your data here.',
-                         rows='20', ng-model='textareaData')
-            div.span4
+        .row
+            .col-sm-8
+                textarea(name='data', placeholder='Paste your data here.', rows='20', ng-model='textareaData')
+            .col-sm-4
                 br
                 h3 Try a sample data:
                 small
@@ -23,15 +25,15 @@ block content
                         li
                             a(ng-click="sampleData('lakesminnesota.txt')")
                                 | List of lakes in Minnesota
-        div.row
-            div.span8
-                div.row
-                    div.span5
+        .row
+            .col-sm-8
+                .row
+                    .col-sm-5
                         h3 Or import a CSV file
-                    div.span3
+                    .col-sm-3
                         input(type='file', accept='text/*', name='file', multiple)
-            div.span4
-                div.text-center
+            .col-sm-4
+                .text-center
                     button.btn.btn-inverse.btn-block.btn-large Check data
                     br
                     input(type='checkbox', name='keep', checked)#keep
