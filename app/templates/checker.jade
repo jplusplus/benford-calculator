@@ -48,12 +48,13 @@ block content
 
             if shareUrl
                 p.share
-                    a(href='/').right-20
+                    a(href='/').right-20.btn.btn-default
                         i.icon-angle-left.right-05
                         | New data set
-                    a(href=shareUrl)
+                    a(href=shareUrl).btn.btn-default
                         i.icon-link.right-05
                         | Share result
             else
-                a(href='/').btn.btn-inverse.btn-large.btn-block
+                a(href='/').right-20.btn.btn-default
+                    i.icon-angle-left.right-05
                     | New data set
