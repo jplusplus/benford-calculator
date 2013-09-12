@@ -13,14 +13,27 @@ block scripts
     :coffeescript
         $ () =>
             locals = JSON.parse('!{JSON.stringify(locals)}')
-            ($ '#chart').highcharts Checker.getLawChartOptions locals.percents,
-                                                               locals.law,
-                                                               locals.range
+            ($ '#chart').highcharts Checker.getLawChartOptions locals.percents, locals.law, locals.range
             ($ '#magnitudes').highcharts Checker.getMagnitudeChartOptions locals.magnitudes
 
 block content
     .row
-        #chart.col-sm-8            
+        .col-sm-8
+            ul.nav.nav-pills
+                li(ng-class="{active: magHidden}", ng-click="magHidden=true")
+                    a(href="#z-statistic-pan") z-statistic
+                li(ng-class="{active: !magHidden}", ng-click="magHidden=false")
+                    a(href="#magnitudes-pan") magnitudes
+            .tab-content
+                .tab-pane(ng-class="{active: magHidden}")
+                    #chart
+                .tab-pane(ng-class="{active: !magHidden}")
+                    #magnitudes                       
+                    p.top10
+                        | Benford's law generally does not apply if you have less than
+                        |  2 orders of magnitude represented.
+
+            
         .col-sm-4            
             .higher-z.bottom-20(class= z > 1.96 ? "failled" : "success")
                 .value #{z}
@@ -44,18 +57,3 @@ block content
             else
                 a(href='/').btn.btn-inverse.btn-large.btn-block
                     | New data set
-
-    .row(ng-hide='magHidden')
-        .col-sm-8.text-center
-            #magnitudes
-        .col-sm-4
-            p
-                br
-                | Benford's law generally does not apply if you have less than
-                |  2 orders of magnitude represented.
-            br
-            a.btn.btn-link.btn-small(ng-click='magHidden=!magHidden') [x] Close
-    .row(ng-hide='!magHidden')
-        .col-sm-12
-            a.btn.btn-link.btn-small(ng-click='magHidden=!magHidden')
-                | [+] Show orders of magnitudes
