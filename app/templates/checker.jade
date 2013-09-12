@@ -20,10 +20,10 @@ block content
     .row
         .col-sm-8
             ul.nav.nav-pills
-                li(ng-class="{active: magHidden}", ng-click="magHidden=true")
-                    a(href="#z-statistic-pan") z-statistic
-                li(ng-class="{active: !magHidden}", ng-click="magHidden=false")
-                    a(href="#magnitudes-pan") magnitudes
+                li(ng-class="{active: magHidden}")
+                    a(ng-click="magHidden=true", href="#") z-statistic
+                li(ng-class="{active: !magHidden}", )
+                    a(ng-click="magHidden=false", href="#") magnitudes
             .tab-content
                 .tab-pane(ng-class="{active: magHidden}")
                     #chart
