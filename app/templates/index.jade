@@ -10,32 +10,33 @@ block content
     form(action='/checker', method='POST', enctype='multipart/form-data')
         .row
             .col-sm-8
-                textarea(name='data', placeholder='Paste your data here.', rows='20', ng-model='textareaData')
+                textarea.col-sm-12.form-control(name='data', placeholder='Paste your data here.', rows='10', ng-model='textareaData')            
             .col-sm-4
-                br
-                h3 Try a sample data:
-                small
-                    ul#samples
+                .top-0
+                    h4 
+                        .icon-paste.right-10
+                        | Try a sample data              
+                    ul.samples.list-unstyled
                         li
-                            a(ng-click="sampleData('soviet.txt')")
+                            a(ng-click="sampleData('soviet.txt')")                                
                                 | Soviet brochure, 1928
                         li
-                            a(ng-click="sampleData('population.txt')")
+                            a(ng-click="sampleData('population.txt')")                                
                                 | Population by country
                         li
-                            a(ng-click="sampleData('lakesminnesota.txt')")
-                                | List of lakes in Minnesota
-        .row
-            .col-sm-8
-                .row
-                    .col-sm-5
-                        h3 Or import a CSV file
-                    .col-sm-3
-                        input(type='file', accept='text/*', name='file', multiple)
-            .col-sm-4
-                .text-center
-                    button.btn.btn-inverse.btn-block.btn-large Check data
-                    br
-                    input(type='checkbox', name='keep', checked)#keep
-                    label(style='display:inline-block', for='keep')
+                            a(ng-click="sampleData('lakesminnesota.txt')")                                
+                                | List of lakes in Minnesota            
+                .top-40
+                    h4 
+                        .icon-upload.right-10
+                        | Or import a CSV file
+                    input(type='file', accept='text/*', name='file', multiple)
+        .row.top-10
+            .col-sm-8                
+                    .pull-right
+                        button.btn.btn-primary 
+                            i.icon-bar-chart.right-05
+                            | Check data
+                    label.pull-right.checkbox.right-20(for='keep')
                         | Store my result
+                        input(type='checkbox', name='keep', checked)#keep

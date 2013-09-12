@@ -4,9 +4,7 @@ class Checker extends BaseCtl
 
     constructor : (@scope) ->
         super arguments
-
         #Scope properties
-        @scope.step2 = 'strong'
         @scope.magHidden = yes
 
     @getGlobalOptions : () ->

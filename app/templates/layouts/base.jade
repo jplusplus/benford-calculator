@@ -3,15 +3,14 @@ html(lang='en', ng-app)
     head
         title!= title
         meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+        link(href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300', rel='stylesheet', type='text/css')
         !=css('/stylesheets/style.css')
         block scripts
     body
-        .container(ng-controller='#{ngController}')
-            .row
-                .col-sm-12
+        div(ng-controller='#{ngController}').container
+            .row 
+                //-.col-sm-8
                     h1!= title
-            .row
-                .col-sm-12
                     p
                         | Benford's law is a statistical observation about the distribution
                         | of numbers that's very usefull to detect fraud.
@@ -28,29 +27,42 @@ html(lang='en', ng-app)
                         a(href="https://en.wikipedia.org/wiki/Benford's_law") Wikipedia
                     p
                         a.btn.btn-link.btn-small(href='#', ng-click='toggleHead()')
-                            | {{headerLink}}
-            .row
-                .col-sm-12 &nbsp;
-            .row
-                .span8
-                    a.btn.disabled.btn-large(ng-class="step1")
-                        | 1. Input data
-                .span4
-                    a.btn.disabled.btn-large.btn-block(ng-class="step2")
-                        | 2. Visualize results
-            .row
-                .col-sm-12 &nbsp;
-            block content
-            .row
-                .col-sm-12 &nbsp;
-            .row
-                .span10
+                            | {{headerLink}}   
+            menu
+                ul.list-unstyled.links
+                    li 
+                        a(href="/") Home
+                ul.list-unstyled.steps
+                    li(ng-class="step1")
+                        a(href="/") Input<br />data
+                    li(ng-class="step2")
+                        a(href="") Visualize<br />results                     
+            .content
+                header
+                    h1!=title            
                     p
-                        | Journalism++ builds tools for data-driven storytellers.
+                        | Benford's law is a statistical observation about the distribution
+                        | of numbers that's very usefull to detect fraud.
+                //- 
+                    p.animate-hide.ng-hide(ng-hide='hidden')
+                        | In many domains, such as disbursement data, sales, lengths etc. the first
+                        | digit of a number follows a precise distribution. In one number out of 3,
+                        | for instance, the first digit is a 1. If a data set does not follow this
+                        | distribution, it might be an indication of fraud. Tax authorities around
+                        | the globe use it, with other tools, to spot wrongdoers. Please note that
+                        | Benford's law does not apply to constrained data (height of human beings,
+                        | invoice numbers, etc.).
                         br
+                        | Read more at 
+                        a(href="https://en.wikipedia.org/wiki/Benford's_law") Wikipedia
+                    p
+                        a.btn.btn-link.btn-small(href='#', ng-click='toggleHead()')
+                            | {{headerLink}}   
+                block content
+
+                footer
+                    p
+                        | Journalism++ builds tools for data-driven storytellers.<br />                        
                         | Get in touch at 
                         a(href='mailto:contact@jplusplus.org') contact@jplusplus.org
                         | .
-                .span2
-                    p
-                        img(src='/jplusplus.png')

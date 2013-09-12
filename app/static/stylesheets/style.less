@@ -1,1 +1,153 @@
 @import "vendor/bootstrap/bootstrap.less";
+@import "tools.less";
+@import  '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css';
+
+
+body {
+    padding-left:220px;
+}
+
+menu {
+
+    background:darken(@body-bg, 4);
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:220px;
+    padding:20px 0;
+    margin:0;
+    overflow: hidden; 
+
+
+    &:before {
+        content:"";
+        width:20px;
+        position:absolute;
+        top:-20px;
+        bottom:-20px;        
+        left:100%;
+        .box-shadow(0 0 10px darken(@body-bg, 10) );
+    }
+
+    ul {
+        counter-reset: level;
+    }
+
+    li {
+        display:block;
+        width:160px;
+        margin:auto;
+        margin-bottom:20px;
+
+        &.disable {
+            .opacity(0.1);
+        }      
+
+        a {
+            font-family:@headings-font-family;
+            display:block;
+            width:160px;
+            padding-top:60px;
+            position:relative;
+            overflow:hidden;
+            text-align: center;    
+            color:#fff;        
+            font-size:130%;
+            cursor:pointer;
+          
+
+            &:before {
+                counter-increment: level;
+                content:counter(level);
+
+                color:fade(#fff, 40);
+                font-size:40px;
+
+                position:absolute;
+                top:10px;
+                left:0;
+                right:0;
+            }
+        }
+    }
+
+
+    .steps li {
+
+
+        &:before {
+            display: block;
+            content:"● ● ●";
+            font-size:20px;
+            width:10px;
+            line-height: 15px;
+            margin:10px auto;
+            text-align:center;
+            text-shadow: 0 -1px 0 fade(#fff, 80);
+        }
+
+        &:first-child {
+            margin-top:20px;
+
+            &:before {
+                display:none;                
+            }
+        }
+    }
+
+    .links {
+        padding-bottom:20px;
+        border-bottom:1px dotted fade(#fff, 10);
+        margin-bottom:20px;
+
+        a:before {
+            content: '⌂';
+        }
+    }
+}
+
+.content {
+    padding:20px; 
+    
+    header {
+        margin-bottom:40px;
+
+        h1 {
+            padding-left:70px;
+            background:url("/img/logo.png") 0 center no-repeat;
+        }
+    }
+
+    footer {
+        margin-top:60px;
+        padding:20px 0;
+        border-top:1px dotted fade(#fff, 10);
+    }
+
+    .samples {
+        a {
+            cursor: pointer;
+        }
+    }
+
+    .higher-z {
+        .value {
+            font-size:70px;
+        }
+
+        &.failled {
+            color:@brand-danger;
+        }
+
+        &.success {
+            color:@brand-success;
+        }
+
+        .name {
+            color:white;
+            font-weight: bold;
+        }
+    }
+}

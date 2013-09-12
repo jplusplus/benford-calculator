@@ -20,36 +20,32 @@ block scripts
 
 block content
     .row
-        .col-sm-8
-            #chart
-        .col-sm-4
-            br
-            h3 Higher z-statistic: #{z}
-            p.text-right
-                if z > 1.96
-                    small.status.text-error FAILS
-                else
-                    small.status.text-success PASSES
-                small
-                    a(href="https://github.com/jplusplus/benford-calculator/wiki/Frequently-Asked-Questions#whats-the-z-statistic")
-                        | What's this?
+        #chart.col-sm-8            
+        .col-sm-4            
+            .higher-z.bottom-20(class= z > 1.96 ? "failled" : "success")
+                .value #{z}
+                .name.right-20.pull-left Higher z-statistic
+                a(href="https://github.com/jplusplus/benford-calculator/wiki/Frequently-Asked-Questions#whats-the-z-statistic")
+                    | What's this?
+
             if z > 1.96
-                p
+                p.alert.alert-danger.
                     | It seems that the data does not comply with Benford's law.
                     | Keep in mind that this is no proof.
-            br
+
             if shareUrl
-                .row
-                    .col-sm-2
-                        a(href='/').btn.btn-inverse.btn-large.btn-block
-                            | New data set
-                    .col-sm-2
-                        a(href=shareUrl).btn.btn-large.btn-block
-                            | Share result
+                p.share
+                    a(href='/').right-20
+                        i.icon-angle-left.right-05
+                        | New data set
+                    a(href=shareUrl)
+                        i.icon-link.right-05
+                        | Share result
             else
                 a(href='/').btn.btn-inverse.btn-large.btn-block
                     | New data set
-    .row.row-animate-hide(ng-hide='magHidden')
+
+    .row(ng-hide='magHidden')
         .col-sm-8.text-center
             #magnitudes
         .col-sm-4
