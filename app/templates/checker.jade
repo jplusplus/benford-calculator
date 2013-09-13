@@ -18,7 +18,7 @@ block scripts
 
 block content
     .row
-        .col-sm-8
+        .col-md-8
             ul.nav.nav-pills
                 li(ng-class="{active: magHidden}")
                     a(ng-click="magHidden=true", href="#") Z-statistic
@@ -34,7 +34,7 @@ block content
                         |  3 orders of magnitude represented.
 
             
-        .col-sm-4            
+        .col-md-4            
             .higher-z.bottom-20(class= z > 1.96 ? "failled" : "success")
                 .value
                     if z <= 1.96 
@@ -52,8 +52,8 @@ block content
             if shareUrl
                 p.share
                     a(href='/').right-20.btn.btn-default
-                        i.icon-angle-left.right-05
-                        | New data set
+                        i.icon-angle-left.right-05.bottom-10
+                        | New data set                    
                     a(href=shareUrl).btn.btn-default
                         i.icon-link.right-05
                         | Share result
