@@ -36,10 +36,13 @@ block content
             
         .col-sm-4            
             .higher-z.bottom-20(class= z > 1.96 ? "failled" : "success")
-                .value #{z}
+                .value
+                    if z <= 1.96 
+                        .icon-ok.right-10
+                    | #{z}
                 .name.right-20.pull-left Higher z-statistic
                 a(href="https://github.com/jplusplus/benford-calculator/wiki/Frequently-Asked-Questions#whats-the-z-statistic")
-                    | What's this?
+                    | What's&nbsp;this?
 
             if z > 1.96
                 p.alert.alert-danger.

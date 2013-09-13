@@ -117,8 +117,32 @@ menu {
         margin-bottom:20px;
 
         a:before {
-            content: '⌂';
+            content: "?";
         }
+    }
+}
+
+.container .desc {
+
+    background:#E1E5EA;
+    color:mix(@body-bg, #aaa);
+    max-height:0;
+    padding:0px 20px;
+    margin:0 -15px;
+    border-bottom:1px dotted white;
+    overflow:hidden;
+   .box-shadow(0 0 14px 0 #000);
+   .translate(0, -100px);
+   .transition(0.7s);
+    
+    a {
+        color:@body-bg;
+    }    
+
+    &.show {
+        .translate(0, 0);
+        max-height:400px;
+        padding:10px 20px;
     }
 }
 
