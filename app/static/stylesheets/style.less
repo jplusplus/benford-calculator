@@ -2,6 +2,8 @@
 @import "tools.less";
 @import  '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css';
 
+@zindex-content:100;
+@zindex-menu:@zindex-content+100;
 
 body {
     padding-left:220px;
@@ -23,6 +25,7 @@ body {
 
 menu {
 
+    z-index:@zindex-menu;
     background:darken(@body-bg, 4);
     position:fixed;
     left:0;
@@ -90,7 +93,6 @@ menu {
 
     .steps li {
 
-
         &:before {
             display: block;
             content:"● ● ●";
@@ -118,6 +120,73 @@ menu {
 
         a:before {
             content: "?";
+        }
+    }    
+}
+
+
+@media (max-width: @screen-sm-max) {
+
+    body {        
+        padding-left:0px;
+        padding-top:160px;
+    }
+
+    menu {        
+        position:absolute;
+        left:0;
+        right:0;
+        top:0;
+        bottom:auto;
+        width:auto;
+        height:160px;
+        overflow: hidden;
+
+
+        &:before {            
+            content:"";
+            height:20px;
+            width:100%;
+            position:absolute;
+            left:-20px;
+            right:-20px;        
+            top:100%;
+            bottom:auto;
+            .box-shadow(0 0 10px darken(@body-bg, 10) );
+        }
+
+        .steps li, .links li {
+            float:left;
+            margin:0;
+            pading:0;
+            width:160px;
+            position:relative;
+            overflow:visible;
+
+            &:before {
+                width:40px;
+                text-align: center;
+                position:absolute;
+                right:100%;
+                top:50%;
+                height:20px;
+                line-height:20px;
+                margin-top:-10px;
+                white-space:nowrap;
+            }
+        }
+
+        .steps li{
+            margin-left:40px;
+            &:first-child {
+                margin:0;
+            }  
+        }
+                
+        .links {
+            float:left;
+            border:0;
+            border-right:1px dotted fade(#fff, 10);
         }
     }
 }
@@ -147,6 +216,8 @@ menu {
 }
 
 .content {
+
+    z-index:@zindex-content;
     padding:20px; 
     
     header {

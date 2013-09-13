@@ -9,10 +9,10 @@ block scripts
 block content
     form(action='/checker', method='POST', enctype='multipart/form-data')
         .row
-            .col-sm-8
-                textarea.col-sm-12.form-control(name='data', placeholder='Paste your data here.', rows='10', ng-model='textareaData')            
-            .col-sm-4
-                .top-0
+            .col-md-8
+                textarea.bottom-20.col-sm-12.form-control(name='data', placeholder='Paste your data here.', rows='10', ng-model='textareaData')            
+            .col-md-4
+                .top-0.bottom-40.col-xs-6.col-md-12
                     h4 
                         .icon-paste.right-10
                         | Try a sample data              
@@ -26,13 +26,13 @@ block content
                         li
                             a(ng-click="sampleData('lakesminnesota.txt')")                                
                                 | List of lakes in Minnesota            
-                .top-40
+                .col-xs-6.col-md-12
                     h4 
                         .icon-upload.right-10
                         | Or import a CSV file
                     input(type='file', accept='text/*', name='file', multiple)
-        .row.top-10
-            .col-sm-8                
+        .row
+            .col-md-8                
                     .pull-right
                         button.btn.btn-primary 
                             i.icon-bar-chart.right-05
