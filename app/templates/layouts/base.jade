@@ -39,11 +39,16 @@ html(lang='en', ng-app)
                         | of numbers that's very usefull to detect fraud.      
 
                 block content
-                footer.text-right
-                    a(href="http://paris.jplusplus.org").pull-right.left-40
-                        img(src="/img/logo-full.png", alt="Journalism++")
-                    p.top-10
-                        | Journalism++ builds tools for data-driven storytellers.<br />                        
-                        | Get in touch at 
-                        a(href='mailto:contact@jplusplus.org') contact@jplusplus.org
-                        | .
+                footer.row                    
+                    .row
+                        .col-md-6
+                            p
+                                a(href="https://github.com/jplusplus/benford-calculator") We &#10084; Open Source.
+                            p
+                                | Journalism++ builds tools for data-driven storytellers.<br />                        
+                                | Get in touch at 
+                                a(href='mailto:contact@jplusplus.org') contact@jplusplus.org
+                                | .
+                        p.col-md-6.text-right
+                            a(href="http://paris.jplusplus.org")
+                                img(src="/img/logo-full.png", alt="Journalism++")
