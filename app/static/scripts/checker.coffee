@@ -87,7 +87,7 @@ class Checker extends BaseCtl
 
     @getMagnitudeChartOptions : (magnitudes) ->
         xAxis = []
-        xAxis.push "10^#{key}" for key of magnitudes
+        xAxis.push "10e#{key}" for key of magnitudes
         angular.extend (do Checker.getGlobalOptions), {
             title :
                 style:

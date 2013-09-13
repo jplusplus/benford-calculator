@@ -21,9 +21,9 @@ block content
         .col-sm-8
             ul.nav.nav-pills
                 li(ng-class="{active: magHidden}")
-                    a(ng-click="magHidden=true", href="#") z-statistic
+                    a(ng-click="magHidden=true", href="#") Z-statistic
                 li(ng-class="{active: !magHidden}", )
-                    a(ng-click="magHidden=false", href="#") magnitudes
+                    a(ng-click="magHidden=false", href="#") Orders of magnitudes
             .tab-content
                 .tab-pane(ng-class="{active: magHidden}")
                     #chart
@@ -31,7 +31,7 @@ block content
                     #magnitudes                       
                     p.top10
                         | Benford's law generally does not apply if you have less than
-                        |  2 orders of magnitude represented.
+                        |  3 orders of magnitude represented.
 
             
         .col-sm-4            
@@ -40,12 +40,12 @@ block content
                     if z <= 1.96 
                         .icon-ok.right-10
                     | #{z}
-                .name.right-20.pull-left Higher z-statistic
+                .name.right-20.pull-left Highest z-statistic
                 a(href="https://github.com/jplusplus/benford-calculator/wiki/Frequently-Asked-Questions#whats-the-z-statistic")
                     | What's&nbsp;this?
 
             if z > 1.96
-                p.alert.alert-danger.
+                p.alert.alert-danger
                     | It seems that the data does not comply with Benford's law.
                     | Keep in mind that this is no proof.
 

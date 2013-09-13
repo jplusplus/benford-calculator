@@ -11,7 +11,7 @@ html(lang='en', ng-app)
             menu
                 ul.list-unstyled.links
                     li 
-                        a(href="#", ng-click='showDescription = !showDescription') Learn
+                        a(href="#", ng-click='showDescription = !showDescription') Learn more
                 ul.list-unstyled.steps
                     li(ng-class="step1")
                         a(href="/") Input<br />data
@@ -35,8 +35,8 @@ html(lang='en', ng-app)
                 header
                     h1!=title            
                     p
-                        | Benford's law is a statistical observation about the distribution
-                        | of numbers that's very usefull to detect fraud.      
+                        | Do your data follow Benford's law? If they don't,
+                        | it might be that someone meddled with them!      
 
                 block content
                 footer.row                    

@@ -1,7 +1,7 @@
 fs = require 'fs'
 mongodb = require 'mongodb'
 
-title = 'Benford&#39;s Law Checker'
+title = 'Find the bad guys with Benford&#39;s Law'
 
 #Connect to database
 connectURL = process.env.MONGOLAB_URI || process.env.MONGO_URI || 'mongodb://localhost:27017/benford'
