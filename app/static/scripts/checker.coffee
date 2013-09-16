@@ -4,6 +4,7 @@ class Checker extends BaseCtl
 
     constructor : (@scope) ->
         super arguments
+
         #Scope properties
         @scope.magHidden = yes
 
@@ -16,7 +17,7 @@ class Checker extends BaseCtl
                     borderWidth: 0
             chart :
                 backgroundColor : 'transparent'  
-                height : 400      
+                height : 400
             colors: ['#A5A8AA', '#F4E895']
             yAxis :           
                 gridLineWidth: 0

@@ -15,6 +15,7 @@ block scripts
             locals = JSON.parse('!{JSON.stringify(locals)}')
             ($ '#chart').highcharts Checker.getLawChartOptions locals.percents, locals.law, locals.range
             ($ '#magnitudes').highcharts Checker.getMagnitudeChartOptions locals.magnitudes
+            do ($ window).resize
 
 block content
     .row
@@ -25,13 +26,11 @@ block content
                 li(ng-class="{active: !magHidden}", )
                     a(ng-click="magHidden=false", href="#") Orders of magnitudes
             .tab-content
-                .tab-pane(ng-class="{active: magHidden}")
-                    #chart
-                .tab-pane(ng-class="{active: !magHidden}")
-                    #magnitudes                       
-                    p.top10
-                        | Benford's law generally does not apply if you have less than
-                        |  3 orders of magnitude represented.
+                #chart.tab-pane(ng-class="{active: magHidden}")
+                #magnitudes.tab-pane(ng-class="{active: !magHidden}")
+                p.top10.tab-pane(ng-class="{active: !magHidden}")
+                    | Benford's law generally does not apply if you have less than
+                    |  3 orders of magnitude represented.
 
             
         .col-sm-4            
