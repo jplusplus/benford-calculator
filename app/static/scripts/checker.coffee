@@ -66,7 +66,11 @@ class Checker extends BaseCtl
                     color: '#E2E3E4'  
         }
 
-    @getLawChartOptions : (percents, data2) ->
+    @getLawChartOptions : (percents, data2, error) ->
+        debug = no
+        (window.location.search.split '?').map (getvar) =>
+            [key, val] = getvar.split '='
+            debug = yes if key is 'debug' and val
         angular.extend (do Checker.getGlobalOptions),
             title:
                 style:
@@ -83,6 +87,12 @@ class Checker extends BaseCtl
                     type : "spline"
                     name : "Benford's law"
                     data : data2
+                }
+                {
+                    type : "errorbar"
+                    data : if debug then error else []
+                    name : 'Error range'
+                    color : '#F4E895'
                 }
             ]    
 
