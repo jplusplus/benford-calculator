@@ -40,7 +40,7 @@ renderCheckedPage = (doc, req, res, share = yes) =>
     #Compute some statistical values...
     for i of locals.law
         #Expected proportion
-        pe = locals.law[i][1] / 100
+        pe = Math.log(1+1/(parseInt(i)+1)) / Math.log(10);
         #Observed proportion
         po = locals.percents[i][1] / 100
         n = locals.total
