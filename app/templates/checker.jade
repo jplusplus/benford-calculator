@@ -34,7 +34,7 @@ block content
 
             
         .col-sm-4            
-            .higher-z.bottom-20(class= z > 2.57 ? "failled" : "success")
+            .higher-z.bottom-20(class= applicable ? (z > 2.57 ? "failled" : "success") : "warning")
                 .value
                     if z <= 1.96 
                         .icon-ok.right-10
@@ -43,10 +43,14 @@ block content
                 a(href="https://github.com/jplusplus/benford-calculator/wiki/Frequently-Asked-Questions#whats-the-z-statistic")
                     | What's&nbsp;this?
 
-            if z > 2.57
-                p.alert.alert-danger
-                    | It seems that the data does not comply with Benford's law.
-                    | Keep in mind that this is no proof.
+            if !applicable
+                p.alert.alert-warning
+                    | Your data set does not allow for a reasonable application of Benford's law.
+            else
+                if z > 2.57
+                    p.alert.alert-danger
+                        | It seems that the data does not comply with Benford's law.
+                        | Keep in mind that this is no proof.
 
             if shareUrl
                 p.share

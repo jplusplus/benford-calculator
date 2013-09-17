@@ -29,8 +29,12 @@ renderCheckedPage = (doc, req, res, share = yes) =>
 
     sorted = (locals.magnitudes.map (mag) -> parseFloat mag[1]).sort (a, b) -> if a < b then 1 else -1
     applicable = 0
-    [0..1].map (i) -> applicable += sorted[i]
-    locals.applicable = not (applicable > 60)
+    [0..4].map (i) ->
+        if applicable >= 0 and sorted[i] > 0
+            applicable += sorted[i]
+        else
+            applicable = -1
+    locals.applicable = applicable > 50
 
     #Compute some statistical values...
     for i of locals.law
