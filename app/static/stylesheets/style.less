@@ -33,6 +33,7 @@ menu {
     bottom:0;
 
     width:220px;
+    height: 100%;
     padding:20px 0;
     margin:0;
     overflow: hidden; 
@@ -43,7 +44,7 @@ menu {
         width:20px;
         position:absolute;
         top:-20px;
-        bottom:-20px;        
+        bottom:-20px;
         left:100%;
         .box-shadow(0 0 10px darken(@body-bg, 10) );
     }
@@ -69,8 +70,8 @@ menu {
             padding-top:60px;
             position:relative;
             overflow:hidden;
-            text-align: center;    
-            color:#fff;        
+            text-align: center;
+            color:#fff;
             font-size:130%;
             cursor:pointer;
           
@@ -108,7 +109,7 @@ menu {
             margin-top:20px;
 
             &:before {
-                display:none;                
+                display:none;
             }
         }
     }
@@ -127,12 +128,12 @@ menu {
 
 @media (max-width: @screen-sm-max) {
 
-    body {        
+    body {
         padding-left:0px;
         padding-top:160px;
     }
 
-    menu {        
+    menu {
         position:absolute;
         left:0;
         right:0;
@@ -143,13 +144,13 @@ menu {
         overflow: hidden;
 
 
-        &:before {            
+        &:before {
             content:"";
             height:20px;
             width:100%;
             position:absolute;
             left:-20px;
-            right:-20px;        
+            right:-20px;
             top:100%;
             bottom:auto;
             .box-shadow(0 0 10px darken(@body-bg, 10) );
