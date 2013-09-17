@@ -16,7 +16,7 @@ class Checker extends BaseCtl
                 spline:
                     borderWidth: 0
             chart :
-                backgroundColor : 'transparent'  
+                backgroundColor : 'rgb(19, 26, 35)'
                 height : 400
             colors: ['#A5A8AA', '#F4E895']
             yAxis :           
@@ -26,20 +26,20 @@ class Checker extends BaseCtl
                 title : '%'
                 labels :
                     style:
-                        color: '#8A9093'                          
+                        color: '#8A9093'
                         fontSize: 16
                         fontFamily: '"Helvetica Neue", Helvetica, Arial, geneva, sans-serif'
                     formatter : () ->
-                        @value + '%'            
+                        @value + '%'
             xAxis:
                 lineColor: '#A5A8AA'
                 tickWidth: 0
                 labels:
                     style:
-                        color: '#8A9093'  
+                        color: '#8A9093'
                         fontSize: 16
                         fontFamily: '"Helvetica Neue", Helvetica, Arial, geneva, sans-serif'
-                    formatter: ->@value  
+                    formatter: ->@value
             tooltip :
                 shared : yes
                 followPointer : yes
@@ -48,7 +48,7 @@ class Checker extends BaseCtl
                 borderRadius: 2
                 valueDecimals : 3
                 style:
-                    color: '#8A9093'                      
+                    color: '#8A9093'
                     fontSize: 16
                     fontFamily: '"Helvetica Neue", Helvetica, Arial, geneva, sans-serif'
             credits :
@@ -60,11 +60,11 @@ class Checker extends BaseCtl
                 y : 35
                 borderWidth: 0
                 itemStyle:
-                    color: '#C5C8C9'                      
+                    color: '#C5C8C9'
                     fontSize: 16
                     fontFamily: '"Helvetica Neue", Helvetica, Arial, geneva, sans-serif'
                 itemHoverStyle:
-                    color: '#E2E3E4'  
+                    color: '#E2E3E4'
         }
 
     @getLawChartOptions : (percents, data2, error) ->
@@ -77,7 +77,7 @@ class Checker extends BaseCtl
                 style:
                     color: '#fff'
                     'font-weight': 'bold'
-                text: "Benford's law vs. your data"           
+                text: "Benford's law vs. your data"
             series: [
                 {
                     type : "column"
