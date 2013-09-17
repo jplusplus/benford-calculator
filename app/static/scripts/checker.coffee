@@ -46,6 +46,7 @@ class Checker extends BaseCtl
                 valueSuffix : '%'
                 backgroundColor: "#0C1016"
                 borderRadius: 2
+                valueDecimals : 3
                 style:
                     color: '#8A9093'                      
                     fontSize: 16

@@ -25,25 +25,21 @@ renderCheckedPage = (doc, req, res, share = yes) =>
         ngController : 'Checker'
         range : []
         z : 0
-        law : [
-            [1, 30.1]
-            [2, 17.6]
-            [3, 12.5]
-            [4, 9.7]
-            [5, 7.9]
-            [6, 6.7]
-            [7, 5.8]
-            [8, 5.1]
-            [9, 4.6]
-        ]
+        law : [1..9].map (d) -> [d, (Math.log (1 + 1 / d)) / Math.LN10 * 100]
+
+    sorted = (locals.magnitudes.map (mag) -> parseFloat mag[1]).sort (a, b) -> if a < b then 1 else -1
+    applicable = 0
+    [0..1].map (i) -> applicable += sorted[i]
+    locals.applicable = not (applicable > 60)
 
     #Compute some statistical values...
     for i of locals.law
+        n = locals.total
+
         #Expected proportion
-        pe = Math.log(1+1/(parseInt(i)+1)) / Math.log(10);
+        pe = locals.law[i][1] / 100
         #Observed proportion
         po = locals.percents[i][1] / 100
-        n = locals.total
 
         #Standard deviation
         si = Math.pow (pe * (1 - pe)) / n, (1 / 2)
@@ -61,8 +57,9 @@ renderCheckedPage = (doc, req, res, share = yes) =>
             z = abs / si
 
         index = locals.law[i][0]
-        locals.range[i] = [index, (Math.round low * 10) / 10, (Math.round up * 10) / 10]
-        locals.z = (Math.round z * 1000) / 1000 if z > locals.z
+        locals.range[i] = [index, low, up]
+        locals.z = z if z > locals.z
+    locals.z = (Math.round locals.z * 1000) / 1000
 
     if share
         #If the results were stored in DB, display the `share URL`
@@ -109,7 +106,7 @@ exports.checker = (req, res) =>
     lastMagnitude = 0
     results[i] = 0 for i in [1..9]
     for i of numbers
-        #Remove all `,` and `.` from the number
+        #Remove all `,` or `.` from the number depending of detected `thousand separator`
         numbers[i] = parseInt (String numbers[i]).replace (RegExp "[#{thousand}]", 'g'), ''
         if String(numbers[i])[0] > 0
             ++total
@@ -122,18 +119,16 @@ exports.checker = (req, res) =>
             ++magnitudes[String(pow)]
 
     #Compute %
-    #(Math.round value * 10) / 10) round value to two decimals
     percents = []
     for key, value of results
         percents.push [parseInt(key),
-                       (Math.round (value * 100 / total) * 10) / 10]
+                       (value * 100 / total)]
 
     #Compute magnitudes %
-    #(Math.round value * 10) / 10) round value to two decimals
     magnitudePercents = []
     for key, val of magnitudes
         magnitudePercents.push [key,
-                         (Math.round (magnitudes[key] * 100 / total) * 10) / 10]
+                         (magnitudes[key] * 100 / total)]
 
     locals =
         numbers : results
