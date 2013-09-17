@@ -7,7 +7,7 @@ html(lang='en', ng-app)
         !=css('/stylesheets/style.css')
         block scripts
     body
-        div(ng-controller='#{ngController}').container            
+        div(ng-controller='#{ngController}').container
             menu
                 ul.list-unstyled.links
                     li 
@@ -16,7 +16,7 @@ html(lang='en', ng-app)
                     li(ng-class="step1")
                         a(href="/") Input<br />data
                     li(ng-class="step2")
-                        a(href="") Visualize<br />results  
+                        a(href="") Visualize<br />results
 
 
             .desc(ng-class='{show: showDescription}')
@@ -33,13 +33,13 @@ html(lang='en', ng-app)
                     a(href="https://en.wikipedia.org/wiki/Benford's_law") Wikipedia
             .content
                 header
-                    h1!=title            
+                    h1!=title
                     p
                         | Do your data follow Benford's law? If they don't,
                         | it might be that someone meddled with them!      
 
                 block content
-                footer.row                    
+                footer.row
                     .row
                         .col-md-6
                             p

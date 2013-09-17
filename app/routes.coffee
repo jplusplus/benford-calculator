@@ -14,7 +14,7 @@ mongodb.MongoClient.connect connectURL, (err, db) =>
 
 #Index page
 exports.index = (req, res) =>
-	res.render 'index', { title : title, ngController : 'IndexCtl' }
+    res.render 'index', { title : title, ngController : 'IndexCtl' }
 
 renderCheckedPage = (doc, req, res, share = yes) =>
     locals =

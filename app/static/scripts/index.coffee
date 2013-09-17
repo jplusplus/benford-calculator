@@ -4,9 +4,11 @@ class IndexCtl extends BaseCtl
 
     constructor : (@scope, @http)->
         super arguments
+
         #Scope properties
         @scope.textareaData = ''
         @scope.step2 = 'disable'
+
         #Scope methods
         @scope.sampleData = (sampleName) =>
             (@http.get "/samples/#{sampleName}").success (data) =>

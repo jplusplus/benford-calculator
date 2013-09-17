@@ -10,21 +10,21 @@ block content
     form(action='/checker', method='POST', enctype='multipart/form-data')
         .row
             .col-md-8
-                textarea.bottom-20.col-sm-12.form-control(name='data', placeholder='Paste your data here.', rows='10', ng-model='textareaData')            
+                textarea.bottom-20.col-sm-12.form-control(name='data', placeholder='Paste your data here.', rows='10', ng-model='textareaData')
             .col-md-4
                 .top-0.bottom-40.col-xs-6.col-md-12
                     h4 
                         .icon-paste.right-10
-                        | Try a sample data set             
+                        | Try a sample data set
                     ul.samples.list-unstyled
                         li
-                            a(ng-click="sampleData('nelson.txt')")                                
+                            a(ng-click="sampleData('nelson.txt')")
                                 | Wayne Nelson's fake payments
                         li
-                            a(ng-click="sampleData('population.txt')")                                
+                            a(ng-click="sampleData('population.txt')")
                                 | Population by country
                         li
-                            a(ng-click="sampleData('lakesminnesota.txt')")                                
+                            a(ng-click="sampleData('lakesminnesota.txt')")
                                 | List of lakes in Minnesota
                         li
                             a(ng-click="sampleData('fibonacci.txt')")
@@ -35,7 +35,7 @@ block content
                         | Or import a CSV file
                     input(type='file', accept='text/*', name='file', multiple)
         .row
-            .col-md-8                
+            .col-md-8
                     .pull-right
                         button.btn.btn-primary 
                             i.icon-bar-chart.right-05
