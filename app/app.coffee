@@ -20,6 +20,9 @@ app.use app.router
 app.use express.static path.join __dirname, 'static'
 app.use (require 'connect-assets') src : path.join __dirname, 'static'
 
+app.use (req, res, next) =>
+    res.redirect '/'
+
 app.configure 'development', =>
     app.use do express.errorHandler
 

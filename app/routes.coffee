@@ -25,7 +25,7 @@ renderCheckedPage = (doc, req, res, share = yes) =>
         ngController : 'Checker'
         range : []
         z : 0
-        law : [1..9].map (d) -> [d, (Math.log (1 + 1 / d)) / Math.LN10 * 100]
+        law : [1..9].map (d) -> [d, (Math.log 1 + 1 / d) / Math.LN10 * 100]
 
     sorted = (locals.magnitudes.map (mag) -> parseFloat mag[1]).sort (a, b) -> if a < b then 1 else -1
     applicable = 0
