@@ -13,7 +13,7 @@ block content
                 textarea.bottom-20.col-sm-12.form-control(name='data', placeholder='Paste your data here.', rows='10', ng-model='textareaData')
             .col-md-4
                 .top-0.bottom-40.col-xs-6.col-md-12
-                    h4 
+                    h4
                         .icon-paste.right-10
                         | Try a sample data set
                     ul.samples.list-unstyled
@@ -30,14 +30,14 @@ block content
                             a(ng-click="sampleData('fibonacci.txt')")
                                 | First Fibonacci numbers
                 .col-xs-6.col-md-12
-                    h4 
+                    h4
                         .icon-upload.right-10
                         | Or import a CSV file
-                    input(type='file', accept='text/*', name='file', multiple)
+                    input(type='file', name='file', multiple)
         .row
             .col-md-8
                     .pull-right
-                        button.btn.btn-primary 
+                        button.btn.btn-primary
                             i.icon-bar-chart.right-05
                             | Check data
                     label.pull-right.checkbox.right-20(for='keep')
