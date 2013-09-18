@@ -34,7 +34,7 @@ menu {
 
     width:220px;
     height: 100%;
-    padding:20px 0;
+    padding: 0 0 20px 0;
     margin:0;
     overflow: hidden; 
 
@@ -130,7 +130,21 @@ menu {
 
         a:before {
             content: "?";
+            color: @brand-warning;
+            font-size: 150%;
         }
+
+        li {
+            margin-bottom: 0;
+            padding-top: 0;
+
+            a {
+                padding-top: 40px;
+                font-size: 100%;
+            }
+
+        }
+
     }
 }
 
