@@ -298,14 +298,25 @@ menu {
     }
 
     #share {
+        margin-top: 50px;
 
         input.number {
             border-width: 1px;
         }
 
+        .alert {
+            padding: @alert-padding / 2;
+        }
+
         textarea {
+            margin-bottom: 10px;
             font-size: 85%;
+            width: 100%;
         }
 
     }
+}
+
+.alert-info a {
+    color: @alert-info-text;
 }

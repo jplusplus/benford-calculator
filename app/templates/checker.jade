@@ -58,9 +58,11 @@ block content
             if shareUrl
                 div#share
                     h4 Link to your results:
-                    a(href=shareUrl)= shareUrl
+                    p.alert.alert-info
+                        a(href=shareUrl)= shareUrl
                     h4 Embed in your website:
                     p Copy/paste the following code in your website.
+                    textarea(rows='4' ng-init='shareUrl="#{shareUrl}";updateEmbed()' ng-model="embeded")
                     p
                         label(for='width') Width:&nbsp;
                         input#width.number(type='number' size=3 ng-model='embedwidth' ng-change="updateEmbed()")
@@ -68,4 +70,3 @@ block content
                         label(for='height') Height:&nbsp;
                         input#height.number(type='number' size=3 ng-model='embedheight' ng-change="updateEmbed()")
                         |  px
-                    textarea(cols='38' rows='6' ng-init='shareUrl="#{shareUrl}";updateEmbed()' ng-model="embeded")

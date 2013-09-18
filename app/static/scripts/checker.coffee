@@ -7,12 +7,19 @@ class Checker extends BaseCtl
 
         #Scope properties
         @scope.magHidden = yes
+        @scope.embedHidden = yes
         @scope.embedwidth = 800
         @scope.embedheight = 550
 
+        @scope.watch 'embedwidth', (name, oldVal, newVal) =>
+            if newVal? then newVal else oldVal
+
+        @scope.watch 'embedheight', (name, oldVal, newVal) =>
+            if newVal? then newVal else oldVal
+
         #Scope functions
         @scope.updateEmbed = () =>
-            @scope.embeded = '<iframe src="' + @scope.shareUrl + '" frameborder="0" allowtransparency="true" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen width="' + @scope.embedwidth + '" height="' + @scope.embedheight + '"></iframe>'
+            @scope.embeded = '<iframe src="' + @scope.shareUrl + '/chart" frameborder="0" allowtransparency="true" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen width="' + @scope.embedwidth + '" height="' + @scope.embedheight + '"></iframe>'
         do @scope.updateEmbed
 
     @getGlobalOptions : () ->
