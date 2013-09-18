@@ -7,7 +7,7 @@ block scripts
     !=js('/scripts/index.js')
 
 block content
-    form(action='/checker', method='POST', enctype='multipart/form-data')
+    form(name='form' action='/checker', method='POST', enctype='multipart/form-data')
         .row
             .col-md-8
                 textarea.bottom-20.col-sm-12.form-control(name='data', placeholder='Paste your data here.', rows='10', ng-model='textareaData')

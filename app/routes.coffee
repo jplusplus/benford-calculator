@@ -16,7 +16,7 @@ mongodb.MongoClient.connect connectURL, (err, db) =>
 exports.index = (req, res) =>
     res.render 'index', { title : title, ngController : 'IndexCtl' }
 
-renderCheckedPage = (doc, req, res, share = yes) =>
+renderCheckedPage = (doc, req, res, share = yes, onlychart = no) =>
     locals =
         percents : doc.percents
         magnitudes : doc.magnitudes
@@ -68,7 +68,7 @@ renderCheckedPage = (doc, req, res, share = yes) =>
     if share
         #If the results were stored in DB, display the `share URL`
         locals.shareUrl = req.protocol + '://' + (req.get 'host') + req.url
-    res.render 'checker', locals
+    res.render (if onlychart then 'onlychart' else 'checker'), locals
 
 exports.checker = (req, res) =>
     globalString = req.body.data
@@ -160,3 +160,16 @@ exports.checked = (req, res) =>
         else
             #Finally, render the page
             renderCheckedPage doc, req, res
+
+exports.chart = (req, res) =>
+    id = new mongodb.ObjectID req.params.id
+
+    #Retrieve information from the database
+    coll.findOne {_id : id}, (err, doc) =>
+        if err? or not doc?
+            #If the specified ID isn't valid, redirect to home page
+            res.redirect '/'
+        else
+            #Finally, render the page
+            renderCheckedPage doc, req, res, yes, yes
+

@@ -32,11 +32,11 @@ block content
                     | Benford's law generally does not apply if you have less than
                     |  3 orders of magnitude represented.
 
-            
-        .col-sm-4            
+
+        .col-sm-4
             .higher-z.bottom-20(class= applicable ? (z > 2.57 ? "failled" : "success") : "warning")
                 .value
-                    if z <= 1.96 
+                    if z <= 1.96
                         .icon-ok.right-10
                     | #{z}
                 .name.right-20.pull-left Highest z-statistic
@@ -52,15 +52,14 @@ block content
                         | It seems that the data does not comply with Benford's law.
                         | Keep in mind that this is no proof.
 
+            a(href='/').right-20.btn.btn-default
+                i.icon-angle-left.right-05
+                | New data set
             if shareUrl
-                p.share
-                    a(href='/').right-20.btn.btn-default
-                        i.icon-angle-left.right-05
-                        | New data set
-                    a(href=shareUrl).btn.btn-default
-                        i.icon-link.right-05
-                        | Share result
-            else
-                a(href='/').right-20.btn.btn-default
-                    i.icon-angle-left.right-05
-                    | New data set
+                div#share
+                    h4 Link to your results:
+                    a(href=shareUrl)= shareUrl
+                    h4 Embed in your website:
+                    p Copy/paste the following code in your website.
+                    textarea.disabled(cols='38' rows='6')
+                        | <iframe src="#{shareUrl}" frameborder="0" allowtransparency="true" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen width="800" height="550"></iframe>

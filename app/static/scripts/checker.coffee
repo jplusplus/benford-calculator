@@ -19,7 +19,7 @@ class Checker extends BaseCtl
                 backgroundColor : 'rgb(19, 26, 35)'
                 height : 400
             colors: ['#A5A8AA', '#F4E895']
-            yAxis :           
+            yAxis :
                 gridLineWidth: 0
                 tickColor: "#8A9093"
                 title: false
