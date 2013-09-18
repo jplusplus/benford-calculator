@@ -10,7 +10,7 @@ html(lang='en', ng-app)
         div(ng-controller='#{ngController}').container
             menu
                 ul.list-unstyled.links
-                    li 
+                    li
                         a(href="#", ng-click='showDescription = !showDescription') Learn more
                 ul.list-unstyled.steps
                     li(ng-class="step1")
@@ -31,12 +31,13 @@ html(lang='en', ng-app)
                 p
                     | Read more at 
                     a(href="https://en.wikipedia.org/wiki/Benford's_law") Wikipedia
+                i.close.icon-remove-circle(ng-click="showDescription=false")
             .content
                 header
                     h1!=title
                     p
                         | Do your data follow Benford's law? If they don't,
-                        | it might be that someone meddled with them!      
+                        | it might be that someone meddled with them!
 
                 block content
                 footer.row
