@@ -61,5 +61,11 @@ block content
                     a(href=shareUrl)= shareUrl
                     h4 Embed in your website:
                     p Copy/paste the following code in your website.
-                    textarea.disabled(cols='38' rows='6')
-                        | <iframe src="#{shareUrl}" frameborder="0" allowtransparency="true" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen width="800" height="550"></iframe>
+                    p
+                        label(for='width') Width:&nbsp;
+                        input#width.number(type='number' size=3 ng-model='embedwidth' ng-change="updateEmbed()")
+                        |  px 
+                        label(for='height') Height:&nbsp;
+                        input#height.number(type='number' size=3 ng-model='embedheight' ng-change="updateEmbed()")
+                        |  px
+                    textarea(cols='38' rows='6' ng-init='shareUrl="#{shareUrl}";updateEmbed()' ng-model="embeded")

@@ -7,6 +7,13 @@ class Checker extends BaseCtl
 
         #Scope properties
         @scope.magHidden = yes
+        @scope.embedwidth = 800
+        @scope.embedheight = 550
+
+        #Scope functions
+        @scope.updateEmbed = () =>
+            @scope.embeded = '<iframe src="' + @scope.shareUrl + '" frameborder="0" allowtransparency="true" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen width="' + @scope.embedwidth + '" height="' + @scope.embedheight + '"></iframe>'
+        do @scope.updateEmbed
 
     @getGlobalOptions : () ->
         {
@@ -17,7 +24,7 @@ class Checker extends BaseCtl
                     borderWidth: 0
             chart :
                 backgroundColor : 'rgb(19, 26, 35)'
-                height : 400
+                height : 500
             colors: ['#A5A8AA', '#F4E895']
             yAxis :
                 gridLineWidth: 0
