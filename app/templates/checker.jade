@@ -67,11 +67,11 @@ block content
                 -    ++i;
                 - }
                 - var csvdata = l1 + '\n' + l2 + '\n' + l3;
-                input(type="hidden" name="data" value="#{csvdata}")
-                input(type="hidden" name="source-name" value="#{title}")
+                input(type="hidden" name="data" value=csvdata)
+                input(type="hidden" name="source-name" value!=title)
                 input(type="hidden" name="type" value="grouped-column-chart")
                 if shareUrl
-                    input(type="hidden" name="source-url" value="#{shareUrl}")
+                    input(type="hidden" name="source-url" value=shareUrl)
             if shareUrl
                 div#share
                     h4 Link to your results:
