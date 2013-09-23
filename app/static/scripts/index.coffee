@@ -14,4 +14,8 @@ class IndexCtl extends BaseCtl
             (@http.get "/samples/#{sampleName}").success (data) =>
                 @scope.textareaData = data
 
-window.IndexCtl = IndexCtl
+        @scope.onFileUpload = () =>
+            @scope.textareaData = ''
+            do (document.getElementsByTagName 'form')[0].submit
+
+window.benford.controller 'IndexCtl', IndexCtl

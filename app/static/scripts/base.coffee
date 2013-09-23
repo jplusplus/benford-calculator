@@ -5,3 +5,5 @@ class BaseCtl
         @scope.hidden = yes
 
 window.BaseCtl = BaseCtl
+
+window.benford = angular.module('benford', ['angularFileUpload']);

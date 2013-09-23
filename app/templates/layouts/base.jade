@@ -1,11 +1,12 @@
 doctype 5
-html(lang='en', ng-app)
+html(lang='en', ng-app='benford')
     head
         title!= title
         meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
         link(href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300', rel='stylesheet', type='text/css')
         !=css('/stylesheets/style.css')
         block scripts
+        !=js('/scripts/vendor/angular-file-upload.js')
     body
         div(ng-controller='#{ngController}').container
             menu

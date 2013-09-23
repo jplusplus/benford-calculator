@@ -110,7 +110,7 @@ class Checker extends BaseCtl
                     name : 'Error range'
                     color : '#F4E895'
                 }
-            ]    
+            ]
 
     @getMagnitudeChartOptions : (magnitudes) ->
         xAxis = []
@@ -158,3 +158,4 @@ class Checker extends BaseCtl
         }
 
 window.Checker = Checker
+window.benford.controller 'Checker', Checker

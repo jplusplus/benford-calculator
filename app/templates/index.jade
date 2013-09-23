@@ -33,7 +33,7 @@ block content
                     h4
                         .icon-upload.right-10
                         | Or import a CSV file
-                    input(type='file', name='file', multiple)
+                    input(type='file', name='file', multiple, ng-file-select="onFileUpload()")
         .row
             .col-md-8
                     .pull-right
