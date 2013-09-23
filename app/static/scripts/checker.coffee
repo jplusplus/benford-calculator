@@ -11,11 +11,12 @@ class Checker extends BaseCtl
         @scope.embedwidth = 800
         @scope.embedheight = 550
 
-        @scope.watch 'embedwidth', (name, oldVal, newVal) =>
-            if newVal? then newVal else oldVal
+        if Object.watch?
+            @scope.watch 'embedwidth', (name, oldVal, newVal) =>
+                if newVal? then newVal else oldVal
 
-        @scope.watch 'embedheight', (name, oldVal, newVal) =>
-            if newVal? then newVal else oldVal
+            @scope.watch 'embedheight', (name, oldVal, newVal) =>
+                if newVal? then newVal else oldVal
 
         #Scope functions
         @scope.updateEmbed = () =>
