@@ -8,8 +8,8 @@ class Checker extends BaseCtl
         #Scope properties
         @scope.magHidden = yes
         @scope.embedHidden = yes
-        @scope.embedwidth = 800
-        @scope.embedheight = 550
+        @scope.embedwidth = "800"
+        @scope.embedheight = "550"
 
         if Object.watch?
             @scope.watch 'embedwidth', (name, oldVal, newVal) =>
@@ -20,7 +20,7 @@ class Checker extends BaseCtl
 
         #Scope functions
         @scope.updateEmbed = () =>
-            @scope.embeded = '<iframe src="' + @scope.shareUrl + '/chart" frameborder="0" allowtransparency="true" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen width="' + @scope.embedwidth + '" height="' + @scope.embedheight + '"></iframe>'
+            @scope.embeded = '<iframe src="' + @scope.shareUrl + '/chart" frameborder="0" allowtransparency="true" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen width="' + (parseInt @scope.embedwidth) + '" height="' + (parseInt @scope.embedheight) + '"></iframe>'
         do @scope.updateEmbed
 
     @getGlobalOptions : () ->
@@ -54,7 +54,7 @@ class Checker extends BaseCtl
                         color: '#8A9093'
                         fontSize: 16
                         fontFamily: '"Helvetica Neue", Helvetica, Arial, geneva, sans-serif'
-                    formatter: ->@value
+                    formatter: -> @value
             tooltip :
                 shared : yes
                 followPointer : yes

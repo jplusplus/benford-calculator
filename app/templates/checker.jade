@@ -65,8 +65,8 @@ block content
                     textarea(rows='4' ng-init='shareUrl="#{shareUrl}";updateEmbed()' ng-model="embeded")
                     p
                         label(for='width') Width:&nbsp;
-                        input#width.number(type='number' size=3 ng-model='embedwidth' ng-change="updateEmbed()")
+                        input#width.number(type='text' ng-model='embedwidth' ng-change="updateEmbed()")
                         |  px 
                         label(for='height') Height:&nbsp;
-                        input#height.number(type='number' size=3 ng-model='embedheight' ng-change="updateEmbed()")
+                        input#height.number(type='text' ng-model='embedheight' ng-change="updateEmbed()")
                         |  px
