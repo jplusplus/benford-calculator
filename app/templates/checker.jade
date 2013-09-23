@@ -15,49 +15,75 @@ block scripts
             locals = JSON.parse('!{JSON.stringify(locals)}')
             ($ '#chart').highcharts Checker.getLawChartOptions locals.percents, locals.law, locals.range
             ($ '#magnitudes').highcharts Checker.getMagnitudeChartOptions locals.magnitudes
+            do ($ window).resize
 
 block content
     .row
-        .col-md-8
+        .col-sm-8
             ul.nav.nav-pills
                 li(ng-class="{active: magHidden}")
                     a(ng-click="magHidden=true", href="#") Z-statistic
                 li(ng-class="{active: !magHidden}", )
                     a(ng-click="magHidden=false", href="#") Orders of magnitudes
             .tab-content
-                .tab-pane(ng-class="{active: magHidden}")
-                    #chart
-                .tab-pane(ng-class="{active: !magHidden}")
-                    #magnitudes                       
-                    p.top10
-                        | Benford's law generally does not apply if you have less than
-                        |  3 orders of magnitude represented.
+                #chart.tab-pane(ng-class="{active: magHidden}")
+                #magnitudes.tab-pane(ng-class="{active: !magHidden}")
+                p.top10.tab-pane(ng-class="{active: !magHidden}")
+                    | Benford's law generally does not apply if you have less than
+                    |  3 orders of magnitude represented.
 
-            
-        .col-md-4            
-            .higher-z.bottom-20(class= z > 1.96 ? "failled" : "success")
+
+        .col-sm-4
+            .higher-z.bottom-20(class= applicable ? (z > 2.57 ? "failled" : "success") : "warning")
                 .value
-                    if z <= 1.96 
+                    if z <= 1.96
                         .icon-ok.right-10
                     | #{z}
                 .name.right-20.pull-left Highest z-statistic
                 a(href="https://github.com/jplusplus/benford-calculator/wiki/Frequently-Asked-Questions#whats-the-z-statistic")
                     | What's&nbsp;this?
 
-            if z > 1.96
-                p.alert.alert-danger
-                    | It seems that the data does not comply with Benford's law.
-                    | Keep in mind that this is no proof.
-
-            if shareUrl
-                p.share
-                    a(href='/').right-20.btn.btn-default
-                        i.icon-angle-left.right-05.bottom-10
-                        | New data set                    
-                    a(href=shareUrl).btn.btn-default
-                        i.icon-link.right-05
-                        | Share result
+            if !applicable
+                p.alert.alert-warning
+                    | Your data set does not allow for a reasonable application of Benford's law.
             else
-                a(href='/').right-20.btn.btn-default
-                    i.icon-angle-left.right-05
-                    | New data set
+                if z > 2.57
+                    p.alert.alert-danger
+                        | It seems that the data does not comply with Benford's law.
+                        | Keep in mind that this is no proof.
+
+            a(href='/').right-20.btn.btn-default
+                i.icon-angle-left.right-05
+                | New data set
+            button.right-20.btn.btn-default(form='datawrapper')
+                i.icon-external-link.right-05
+                | Plug my data into Datawrapper
+            form#datawrapper(action="http://datawrapper.de/chart/create" method="POST" target="_blank")
+                - var l1 = "X axis", l2 = "Benford's law", l3 = "Your data", i = 0;
+                - while (i < 9) {
+                -    l1 += ',' + locals.law[i][0]
+                -    l2 += ',' + Math.round(locals.law[i][1] * 10) / 10
+                -    l3 += ',' + Math.round(locals.percents[i][1] * 10) / 10
+                -    ++i;
+                - }
+                - var csvdata = l1 + '\n' + l2 + '\n' + l3;
+                input(type="hidden" name="data" value=csvdata)
+                input(type="hidden" name="source-name" value!=title)
+                input(type="hidden" name="type" value="grouped-column-chart")
+                if shareUrl
+                    input(type="hidden" name="source-url" value=shareUrl)
+            if shareUrl
+                div#share
+                    h4 Link to your results:
+                    p.alert.alert-info
+                        a(href=shareUrl)= shareUrl
+                    h4 Embed in your website:
+                    p Copy/paste the following code in your website.
+                    textarea(rows='4' ng-init='shareUrl="#{shareUrl}";updateEmbed()' ng-model="embeded")
+                    p
+                        label(for='width') Width:&nbsp;
+                        input#width.number(type='text' ng-model='embedwidth' ng-change="updateEmbed()")
+                        |  px 
+                        label(for='height') Height:&nbsp;
+                        input#height.number(type='text' ng-model='embedheight' ng-change="updateEmbed()")
+                        |  px

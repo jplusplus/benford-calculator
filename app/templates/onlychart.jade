@@ -1,0 +1,38 @@
+doctype 5
+html(lang='en', ng-app)
+    head
+        title!= title
+        meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+        link(href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300', rel='stylesheet', type='text/css')
+        !=css('/stylesheets/style.css')
+        !=css('/stylesheets/onlychart.css')
+        script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js")
+        script(src="http://code.highcharts.com/highcharts.js")
+        script(src="http://code.highcharts.com/highcharts-more.js")
+
+        !=js('/scripts/vendor/angular.min.js')
+        !=js('/scripts/vendor/angular-animate.min.js')
+        !=js('/scripts/base')
+        !=js('/scripts/checker.js')
+        :coffeescript
+            $ () =>
+                locals = JSON.parse('!{JSON.stringify(locals)}')
+                ($ '#chart').highcharts Checker.getLawChartOptions locals.percents, locals.law, locals.range
+                ($ '#magnitudes').highcharts Checker.getMagnitudeChartOptions locals.magnitudes
+                do ($ window).resize
+    body
+        div(ng-controller='Checker').container
+            .content
+                .row
+                    .col-sm-12
+                        ul.nav.nav-pills
+                            li(ng-class="{active: magHidden}")
+                                a(ng-click="magHidden=true", href="#") Z-statistic
+                            li(ng-class="{active: !magHidden}", )
+                                a(ng-click="magHidden=false", href="#") Orders of magnitudes
+                        .tab-content
+                            #chart.tab-pane(ng-class="{active: magHidden}")
+                            #magnitudes.tab-pane(ng-class="{active: !magHidden}")
+                            p.top10.tab-pane(ng-class="{active: !magHidden}")
+                                | Benford's law generally does not apply if you have less than
+                                |  3 orders of magnitude represented.

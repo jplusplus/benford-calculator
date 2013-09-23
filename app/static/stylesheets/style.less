@@ -37,9 +37,10 @@ menu {
     bottom:0;
 
     width:220px;
-    padding:20px 0;
+    height: 100%;
+    padding: 0 0 20px 0;
     margin:0;
-    overflow: hidden; 
+    overflow: hidden;
 
 
     &:before {
@@ -47,7 +48,7 @@ menu {
         width:20px;
         position:absolute;
         top:-20px;
-        bottom:-20px;        
+        bottom:-20px;
         left:100%;
         .box-shadow(0 0 10px darken(@body-bg, 10) );
     }
@@ -64,7 +65,7 @@ menu {
 
         &.disable {
             .opacity(0.1);
-        }      
+        }
 
         a {
             font-family:@headings-font-family;
@@ -73,11 +74,11 @@ menu {
             padding-top:60px;
             position:relative;
             overflow:hidden;
-            text-align: center;    
-            color:#fff;        
+            text-align: center;
+            color:#fff;
             font-size:130%;
             cursor:pointer;
-          
+
 
             &:before {
                 counter-increment: level;
@@ -112,9 +113,18 @@ menu {
             margin-top:20px;
 
             &:before {
-                display:none;                
+                display:none;
             }
         }
+
+        &.disable {
+
+            a:hover {
+                text-decoration: none;
+            }
+
+        }
+
     }
 
     .links {
@@ -124,19 +134,33 @@ menu {
 
         a:before {
             content: "?";
+            color: @brand-warning;
+            font-size: 150%;
         }
-    }    
+
+        li {
+            margin-bottom: 0;
+            padding-top: 0;
+
+            a {
+                padding-top: 40px;
+                font-size: 100%;
+            }
+
+        }
+
+    }
 }
 
 
 @media (max-width: @screen-sm-max) {
 
-    body {        
+    body {
         padding-left:0px;
         padding-top:160px;
     }
 
-    menu {        
+    menu {
         position:absolute;
         left:0;
         right:0;
@@ -147,13 +171,13 @@ menu {
         overflow: hidden;
 
 
-        &:before {            
+        &:before {
             content:"";
             height:20px;
             width:100%;
             position:absolute;
             left:-20px;
-            right:-20px;        
+            right:-20px;
             top:100%;
             bottom:auto;
             .box-shadow(0 0 10px darken(@body-bg, 10) );
@@ -184,9 +208,9 @@ menu {
             margin-left:40px;
             &:first-child {
                 margin:0;
-            }  
+            }
         }
-                
+
         .links {
             float:left;
             border:0;
@@ -207,23 +231,27 @@ menu {
    .box-shadow(0 0 14px 0 #000);
    .translate(0, -100px);
    .transition(0.7s);
-    
+
     a {
         color:@body-bg;
-    }    
+    }
 
     &.show {
         .translate(0, 0);
         max-height:400px;
         padding:10px 20px;
     }
+
+    .close {
+        icon: pointer;
+    }
 }
 
 .content {
 
     z-index:@zindex-content;
-    padding:20px; 
-    
+    padding:20px;
+
     header {
         margin-bottom:40px;
 
@@ -258,6 +286,10 @@ menu {
             color:@brand-success;
         }
 
+        &.warning {
+            color:@brand-warning;
+        }
+
         .name {
             color:white;
             font-weight: bold;
@@ -266,6 +298,32 @@ menu {
 
     #chart, #magnitudes {
         width:100%;
-        height:400px
+        height:500px
     }
+
+    #share {
+        word-wrap: break-word;
+
+        margin-top: 50px;
+
+        input.number {
+            border-width: 1px;
+            width: 50px;
+        }
+
+        .alert {
+            padding: @alert-padding / 2;
+        }
+
+        textarea {
+            margin-bottom: 10px;
+            font-size: 85%;
+            width: 100%;
+        }
+
+    }
+}
+
+.alert-info a {
+    color: @alert-info-text;
 }

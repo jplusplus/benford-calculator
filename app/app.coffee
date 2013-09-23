@@ -20,12 +20,16 @@ app.use app.router
 app.use express.static path.join __dirname, 'static'
 app.use (require 'connect-assets') src : path.join __dirname, 'static'
 
+app.use (req, res, next) =>
+    res.redirect '/'
+
 app.configure 'development', =>
     app.use do express.errorHandler
 
 app.get '/', routes.index
 app.post '/checker', routes.checker
 app.get '/checker/:id', routes.checked
+app.get '/checker/:id/chart', routes.chart
 
 #Launch server
 (http.createServer app).listen (app.get 'port'), () =>

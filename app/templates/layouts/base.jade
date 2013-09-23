@@ -1,22 +1,23 @@
 doctype 5
-html(lang='en', ng-app)
+html(lang='en', ng-app='benford')
     head
         title!= title
         meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
         link(href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300', rel='stylesheet', type='text/css')
         !=css('/stylesheets/style.css')
         block scripts
+        !=js('/scripts/vendor/angular-file-upload.js')
     body
-        div(ng-controller='#{ngController}').container            
+        div(ng-controller='#{ngController}').container
             menu
                 ul.list-unstyled.links
-                    li 
+                    li
                         a(href="#", ng-click='showDescription = !showDescription') Learn more
                 ul.list-unstyled.steps
                     li(ng-class="step1")
                         a(href="/") Input<br />data
                     li(ng-class="step2")
-                        a(href="") Visualize<br />results  
+                        a(href="") Visualize<br />results
 
 
             .desc(ng-class='{show: showDescription}')
@@ -31,15 +32,16 @@ html(lang='en', ng-app)
                 p
                     | Read more at 
                     a(href="https://en.wikipedia.org/wiki/Benford's_law") Wikipedia
+                i.close.icon-remove-circle(ng-click="showDescription=false")
             .content
                 header
-                    h1!=title            
+                    h1!=title
                     p
                         | Do your data follow Benford's law? If they don't,
-                        | it might be that someone meddled with them!      
+                        | it might be that someone meddled with them!
 
                 block content
-                footer.row                    
+                footer.row
                     .row
                         .col-md-6
                             p

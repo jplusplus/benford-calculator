@@ -4,12 +4,18 @@ class IndexCtl extends BaseCtl
 
     constructor : (@scope, @http)->
         super arguments
+
         #Scope properties
         @scope.textareaData = ''
         @scope.step2 = 'disable'
+
         #Scope methods
         @scope.sampleData = (sampleName) =>
             (@http.get "/samples/#{sampleName}").success (data) =>
                 @scope.textareaData = data
 
-window.IndexCtl = IndexCtl
+        @scope.onFileUpload = () =>
+            @scope.textareaData = ''
+            do (document.getElementsByTagName 'form')[0].submit
+
+window.benford.controller 'IndexCtl', IndexCtl
