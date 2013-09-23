@@ -37,7 +37,7 @@ block content
         .row
             .col-md-8
                     .pull-right
-                        button.btn.btn-primary
+                        button.btn.btn-primary(ng-class='{disabled:!textareaData}')
                             i.icon-bar-chart.right-05
                             | Check data
                     label.pull-right.checkbox.right-20(for='keep')
