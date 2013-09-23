@@ -57,7 +57,7 @@ block content
                 | New data set
             button.right-20.btn.btn-default(form='datawrapper')
                 i.icon-external-link.right-05
-                | Plug my data into Datawrapper
+                | Plug into Datawrapper
             form#datawrapper(action="http://datawrapper.de/chart/create" method="POST" target="_blank")
                 - var l1 = "X axis", l2 = "Benford's law", l3 = "Your data", i = 0;
                 - while (i < 9) {
@@ -74,16 +74,15 @@ block content
                     input(type="hidden" name="source-url" value=shareUrl)
             if shareUrl
                 div#share
-                    h4 Link to your results:
-                    p.alert.alert-info
-                        a(href=shareUrl)= shareUrl
-                    h4 Embed in your website:
+                    h4 Link to your results
+                    input.form-control(value=shareUrl, readonly=true)
+                    h4 Embed in your website
                     p Copy/paste the following code in your website.
-                    textarea(rows='4' ng-init='shareUrl="#{shareUrl}";updateEmbed()' ng-model="embeded")
+                    textarea.form-control(rows='4' ng-init='shareUrl="#{shareUrl}";updateEmbed()', ng-model="embeded", readonly=true)
                     p
                         label(for='width') Width:&nbsp;
-                        input#width.number(type='text' ng-model='embedwidth' ng-change="updateEmbed()")
+                        input#width.number.form-control(type='text' ng-model='embedwidth' ng-change="updateEmbed()")
                         |  px 
-                        label(for='height') Height:&nbsp;
-                        input#height.number(type='text' ng-model='embedheight' ng-change="updateEmbed()")
+                        label.left-10(for='height') Height:&nbsp;
+                        input#height.number.form-control(type='text' ng-model='embedheight' ng-change="updateEmbed()")
                         |  px
