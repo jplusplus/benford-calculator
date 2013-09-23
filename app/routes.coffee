@@ -18,16 +18,17 @@ exports.index = (req, res) =>
 
 renderCheckedPage = (doc, req, res, share = yes, onlychart = no) =>
     locals =
-        percents : doc.percents
-        magnitudes : doc.magnitudes
+        charts :
+            percents : doc.percents
+            magnitudes : doc.magnitudes
+            law : [1..9].map (d) -> [d, (Math.log 1 + 1 / d) / Math.LN10 * 100]
         total : doc.total
         title : title
         ngController : 'Checker'
         range : []
         z : 0
-        law : [1..9].map (d) -> [d, (Math.log 1 + 1 / d) / Math.LN10 * 100]
 
-    sorted = (locals.magnitudes.map (mag) -> parseFloat mag[1]).sort (a, b) -> if a < b then 1 else -1
+    sorted = (locals.charts.magnitudes.map (mag) -> parseFloat mag[1]).sort (a, b) -> if a < b then 1 else -1
     applicable = 0
     [0..4].map (i) ->
         if applicable >= 0 and sorted[i] > 0
@@ -37,13 +38,19 @@ renderCheckedPage = (doc, req, res, share = yes, onlychart = no) =>
     locals.applicable = applicable > 50
 
     #Compute some statistical values...
-    for i of locals.law
+    l1 = "X axis"
+    l2 = "Benford's law"
+    l3 = "Your data"
+    for i of locals.charts.law
+        l1 += ',' + locals.charts.law[i][0]
+        l2 += ',' + Math.round(locals.charts.law[i][1] * 10) / 10
+        l3 += ',' + Math.round(locals.charts.percents[i][1] * 10) / 10
         n = locals.total
 
         #Expected proportion
-        pe = locals.law[i][1] / 100
+        pe = locals.charts.law[i][1] / 100
         #Observed proportion
-        po = locals.percents[i][1] / 100
+        po = locals.charts.percents[i][1] / 100
 
         #Standard deviation
         si = Math.pow (pe * (1 - pe)) / n, (1 / 2)
@@ -60,10 +67,11 @@ renderCheckedPage = (doc, req, res, share = yes, onlychart = no) =>
         else
             z = abs / si
 
-        index = locals.law[i][0]
+        index = locals.charts.law[i][0]
         locals.range[i] = [index, low, up]
         locals.z = z if z > locals.z
     locals.z = (Math.round locals.z * 1000) / 1000
+    locals.csvdata = l1 + '\n' + l2 + '\n' + l3;
 
     if share
         #If the results were stored in DB, display the `share URL`

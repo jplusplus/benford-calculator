@@ -12,7 +12,7 @@ block scripts
 
     :coffeescript
         $ () =>
-            locals = JSON.parse('!{JSON.stringify(locals)}')
+            locals = JSON.parse('!{JSON.stringify(locals.charts)}')
             ($ '#chart').highcharts Checker.getLawChartOptions locals.percents, locals.law, locals.range
             ($ '#magnitudes').highcharts Checker.getMagnitudeChartOptions locals.magnitudes
             do ($ window).resize
@@ -58,20 +58,13 @@ block content
             button.right-20.btn.btn-default(form='datawrapper')
                 i.icon-external-link.right-05
                 | Plug into Datawrapper
-            form#datawrapper(action="http://datawrapper.de/chart/create" method="POST" target="_blank")
-                - var l1 = "X axis", l2 = "Benford's law", l3 = "Your data", i = 0;
-                - while (i < 9) {
-                -    l1 += ',' + locals.law[i][0]
-                -    l2 += ',' + Math.round(locals.law[i][1] * 10) / 10
-                -    l3 += ',' + Math.round(locals.percents[i][1] * 10) / 10
-                -    ++i;
-                - }
-                - var csvdata = l1 + '\n' + l2 + '\n' + l3;
-                input(type="hidden" name="data" value=csvdata)
-                input(type="hidden" name="source-name" value!=title)
-                input(type="hidden" name="type" value="grouped-column-chart")
+
+            form#datawrapper(action="http://datawrapper.de/chart/create", method="POST", target="_blank")
+                input(type="hidden", name="data", value=csvdata)
+                input(type="hidden", name="source-name", value!=title)
+                input(type="hidden", name="type", value="grouped-column-chart")
                 if shareUrl
-                    input(type="hidden" name="source-url" value=shareUrl)
+                    input(type="hidden", name="source-url", value=shareUrl)
             if shareUrl
                 div#share
                     h4 Link to your results
