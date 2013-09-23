@@ -58,7 +58,7 @@ block content
             button.right-20.btn.btn-default(form='datawrapper')
                 i.icon-external-link.right-05
                 | Plug my data into Datawrapper
-            form#datawrapper(action="http://datawrapper.de/chart/create" method="POST")
+            form#datawrapper(action="http://datawrapper.de/chart/create" method="POST" target="_blank")
                 - var l1 = "X axis", l2 = "Benford's law", l3 = "Your data", i = 0;
                 - while (i < 9) {
                 -    l1 += ',' + locals.law[i][0]
