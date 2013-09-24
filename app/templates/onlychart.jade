@@ -16,7 +16,7 @@ html(lang='en', ng-app)
         !=js('/scripts/checker.js')
         :coffeescript
             $ () =>
-                locals = JSON.parse('!{JSON.stringify(locals)}')
+                locals = JSON.parse('!{JSON.stringify(locals.charts)}')
                 ($ '#chart').highcharts Checker.getLawChartOptions locals.percents, locals.law, locals.range
                 ($ '#magnitudes').highcharts Checker.getMagnitudeChartOptions locals.magnitudes
                 do ($ window).resize
