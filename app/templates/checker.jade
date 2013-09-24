@@ -36,7 +36,7 @@ block content
         .col-sm-4
             .higher-z.bottom-20(class= applicable ? (z > 2.57 ? "failled" : "success") : "warning")
                 .value
-                    if z <= 1.96
+                    if z <= 2.57
                         .icon-ok.right-10
                     | #{z}
                 .name.right-20.pull-left Highest z-statistic

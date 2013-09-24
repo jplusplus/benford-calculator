@@ -56,8 +56,8 @@ renderCheckedPage = (doc, req, res, share = yes, onlychart = no) =>
         si = Math.pow (pe * (1 - pe)) / n, (1 / 2)
 
         #Lower and upper bounds
-        up = (pe + 1.96 * si + (1 / (2 * n))) * 100
-        low = (pe - 1.96 * si - (1 / (2 * n))) * 100
+        up = (pe + 2.57 * si + (1 / (2 * n))) * 100
+        low = (pe - 2.57 * si - (1 / (2 * n))) * 100
 
         abs = (Math.abs po - pe)
         #Z-statistic
